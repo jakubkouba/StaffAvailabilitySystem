@@ -56,5 +56,5 @@ group :development do
   gem 'rdoc'
   gem 'guard-rake'
   gem 'guard-livereload'
-  gem 'guard-rspec'
+  gem 'guard-rspec', require: false
 end
