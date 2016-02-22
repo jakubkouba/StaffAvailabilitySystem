@@ -1,0 +1,55 @@
+== Employee Availability System
+
+This is doc contains basic information about system and how to get setup and runnig
+
+=== Software
+
+==== Development
+
+* Ruby 2.1.6
+
+* rails 4.2.5
+
+
+==== Provision
+
+* vagrant 1.8.1
+
+* virtualbox 5.0.14
+
+To run provision:
+
+1. <tt>$ vagrant plugin install vagrant-librarian-chef-nochef</tt>
+2. git clone project
+3. <tt>$ cd provision</tt>
+4. <tt>$ vagrant up --provision</tt>
+--------
+
+[Database Creation] It is done trough provisionig. Development Production and test DB are created.
+
+This README would normally document whatever steps are necessary to get the
+application up and running.
+
+Things you may want to cover:
+
+* Ruby version
+
+* System dependencies
+
+* Configuration
+
+* Database creation
+
+* Database initialization
+
+* How to run the test suite
+
+* Services (job queues, cache servers, search engines, etc.)
+
+* Deployment instructions
+
+* ...
+
+
+Please feel free to use a different markup language if you do not plan to run
+<tt>rake doc:app</tt>.

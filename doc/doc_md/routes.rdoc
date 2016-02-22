@@ -1,0 +1,15 @@
+== Descriptions for routes at AES
+
+[/] Home page contains information about application with link to login page
+  
+[/login] Login page
+
+[/profile] User dashboard. I contains his nearest availability, Upcomming jobs with assigment flag.
+
+[/profile/edit] Edit user profile. Edit name, surname ....
+
+[/profile/set_availability] Users set their time availability
+
+[/profile/view_availability] Users can view their time availability
+ 
+[/profile/jobs] List of upcomming jobs

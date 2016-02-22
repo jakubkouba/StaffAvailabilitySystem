@@ -1,0 +1,8 @@
+== Reference integrity for DB tables
+
+=== Employee
+
+* can be of multiple types (can have multiple possitions) (driver, bartender, vaiter, etc.)
+* can have multiple availabilities
+* can be assigned to multiple jobs
+* can be authorized to multiple levels (admin, office)
