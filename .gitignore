@@ -17,3 +17,5 @@ doc/html
 
 # Ignore database.yml
 config/database.yml
+
+.idea/**/*
