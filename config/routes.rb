@@ -6,6 +6,11 @@ Rails.application.routes.draw do
            path: :profile,
            path_names: { new: :create_profile, edit: :edit_profile }
 
+  get '/login', to: 'sessions#new', as: :login
+  get '/log_out', to: 'sessions#destroy', as: :log_out
+
+  resource :sessions, only: [:create, :destroy]
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
