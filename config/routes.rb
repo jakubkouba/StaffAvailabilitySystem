@@ -2,6 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'index#index', as: :home
 
+  resource :employees,
+           path: :profile,
+           path_names: { new: :create_profile, edit: :edit_profile }
+
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
