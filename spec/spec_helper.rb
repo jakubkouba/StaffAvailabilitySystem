@@ -15,6 +15,13 @@
 # The `.rspec` file also contains a few flags that are not defaults but that
 # users commonly want.
 #
+
+require 'capybara/rspec'
+# require 'selenium-webdriver'
+
+# Capybara and selenium
+Capybara.register_driver :selenium
+
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -39,6 +46,9 @@ RSpec.configure do |config|
     # `true` in RSpec 4.
     mocks.verify_partial_doubles = true
   end
+
+  config.expose_dsl_globally = false
+  config.include Capybara::DSL
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
