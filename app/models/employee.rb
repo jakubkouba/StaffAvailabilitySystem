@@ -24,5 +24,7 @@ class Employee < ActiveRecord::Base
             :password_hash,
             :password_salt, presence: true
 
+  validates :email, email: true
+
 
 end

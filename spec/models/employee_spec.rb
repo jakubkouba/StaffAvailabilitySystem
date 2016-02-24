@@ -34,5 +34,23 @@ RSpec.describe Employee, type: :model do
     end
   end
 
+  describe 'email address' do
+
+    let(:employee) {Employee.new}
+
+    it 'should be valid' do
+      employee.email = 'john.doe@gmail.com'
+      employee.valid?
+      expect(employee.errors.messages[:email]).to be(nil)
+
+    end
+
+    it 'should be invalid' do
+      employee.email = 'john.doegmail.com'
+      employee.valid?
+      expect(employee.errors.messages[:email]).not_to be(nil)
+    end
+  end
+
 
 end
