@@ -16,4 +16,13 @@
 #
 
 class Employee < ActiveRecord::Base
+
+  validates :name,
+            :surname,
+            :date_of_birth,
+            :email,
+            :password_hash,
+            :password_salt, presence: true
+
+
 end
