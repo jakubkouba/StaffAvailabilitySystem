@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   resource :employees,
            path: :profile,
-           path_names: { new: :create_profile, edit: :edit_profile }
+           path_names: { new: :create }
 
   get '/login', to: 'sessions#new', as: :login
   get '/log_out', to: 'sessions#destroy', as: :log_out
