@@ -1,13 +1,30 @@
+# == Schema Information
+#
+# Table name: employees
+#
+#  id            :integer          not null, primary key
+#  name          :string(64)       not null
+#  surname       :string(64)       not null
+#  date_of_birth :datetime         not null
+#  email         :string(64)       not null
+#  shirt_size    :integer          default(0)
+#  password_hash :string(128)      not null
+#  password_salt :string(128)      not null
+#  last_login    :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 FactoryGirl.define do
   factory :employee do
-    name "MyString"
-    surname "MyString"
+    name "John"
+    surname "Doe"
     date_of_birth "2016-02-24 14:29:24"
-    email "MyString"
+    email "john.doe@gmail.com"
     shirt_size 1
     password_hash "MyString"
     password_salt "MyString"
     last_login "2016-02-24 14:29:24"
-    email_verification 1
+    password 'JohnDoe123'
   end
 end

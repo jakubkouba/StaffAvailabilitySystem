@@ -17,6 +17,8 @@
 
 class Employee < ActiveRecord::Base
 
+  attr_accessor :password
+
   validates :name,
             :surname,
             :date_of_birth,
@@ -26,5 +28,7 @@ class Employee < ActiveRecord::Base
 
   validates :email, email: true
 
-
+  validates :password,
+            presence: true,
+            format:   { with: %r{\A[a-zA-z0-9]{6,20}\z} }
 end

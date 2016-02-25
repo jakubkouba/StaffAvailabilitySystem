@@ -19,6 +19,12 @@ require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
 
+  let(:employee) {build(:employee)}
+
+  it 'should be valid' do
+    employee.valid?
+    expect(employee.errors.messages.keys.empty?).to be_truthy
+  end
 
   it 'should validate attributes presence' do
     [
@@ -36,13 +42,9 @@ RSpec.describe Employee, type: :model do
 
   describe 'email address' do
 
-    let(:employee) {Employee.new}
-
     it 'should be valid' do
-      employee.email = 'john.doe@gmail.com'
       employee.valid?
       expect(employee.errors.messages[:email]).to be(nil)
-
     end
 
     it 'should be invalid' do
@@ -52,5 +54,26 @@ RSpec.describe Employee, type: :model do
     end
   end
 
+  describe 'validates password' do
+
+    it 'should be valid' do
+      employee.valid?
+      expect(employee.errors.messages[:password]).to be_nil
+    end
+
+    it 'should be invalid' do
+      employee.password = 'incorrect_characters_$%^&'
+      employee.valid?
+      expect(employee.errors.messages[:password]).not_to be_nil
+    end
+
+    it 'should not be empty' do
+      employee.password = nil
+      employee.valid?
+      expect(employee.errors.messages[:password]).not_to be nil
+
+    end
+
+  end
 
 end
