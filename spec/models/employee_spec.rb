@@ -62,9 +62,12 @@ RSpec.describe Employee, type: :model do
     end
 
     it 'should be invalid' do
-      employee.password = 'incorrect_characters_$%^&'
-      employee.valid?
-      expect(employee.errors.messages[:password]).not_to be_nil
+      %w(lts morethantwentycharacters _$%^&).each do |example|
+        employee.password = example
+        employee.valid?
+        expect(employee.errors.messages[:password]).not_to be_nil, "failed with #{example}"
+      end
+
     end
 
     it 'should not be empty' do
