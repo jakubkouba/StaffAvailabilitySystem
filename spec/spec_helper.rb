@@ -17,6 +17,7 @@
 #
 
 require 'capybara/rspec'
+require 'factory_girl'
 # require 'selenium-webdriver'
 
 # Capybara and selenium
@@ -49,6 +50,8 @@ RSpec.configure do |config|
 
   config.expose_dsl_globally = false
   config.include Capybara::DSL
+
+  config.include FactoryGirl::Syntax::Methods
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
