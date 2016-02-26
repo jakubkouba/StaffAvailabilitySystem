@@ -83,4 +83,12 @@ RSpec.describe Employee, type: :model do
 
   end
 
+  # describe 'validates date of birth format' do
+  #   it 'should be invalid' do
+  #     employee.date_of_birth = 'incorrect format'
+  #     employee.valid?
+  #     expect(employee.errors.messages[:date_of_birth]).not_to be_nil
+  #   end
+  # end
+  
 end

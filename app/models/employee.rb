@@ -33,4 +33,7 @@ class Employee < ActiveRecord::Base
   validates :password,
             presence: true,
             format:   { with: %r{\A[a-zA-z0-9]{6,20}\z} }
+
+  # validates :date_of_birth,
+  #           format: { with: %r{\A\d{2}/\d{2}/\d{4}\z}, message: 'Enter your date of birth in format dd/mm/yyyy' }
 end
