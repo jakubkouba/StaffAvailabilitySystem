@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160224142924) do
+ActiveRecord::Schema.define(version: 20160226164119) do
 
   create_table "employees", force: :cascade do |t|
     t.string   "name",          limit: 64,              null: false
     t.string   "surname",       limit: 64,              null: false
-    t.datetime "date_of_birth",                         null: false
+    t.date     "date_of_birth",                         null: false
     t.string   "email",         limit: 64,              null: false
     t.integer  "shirt_size",    limit: 2,   default: 0
     t.string   "password_hash", limit: 128,             null: false

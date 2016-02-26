@@ -5,7 +5,7 @@
 #  id            :integer          not null, primary key
 #  name          :string(64)       not null
 #  surname       :string(64)       not null
-#  date_of_birth :datetime         not null
+#  date_of_birth :date             not null
 #  email         :string(64)       not null
 #  shirt_size    :integer          default(0)
 #  password_hash :string(128)      not null
@@ -27,6 +27,8 @@ class Employee < ActiveRecord::Base
             :password_salt, presence: true
 
   validates :email, email: true
+
+  validates :shirt_size, numericality: {only_integer: true}
 
   validates :password,
             presence: true,

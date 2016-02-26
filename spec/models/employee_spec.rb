@@ -5,7 +5,7 @@
 #  id            :integer          not null, primary key
 #  name          :string(64)       not null
 #  surname       :string(64)       not null
-#  date_of_birth :datetime         not null
+#  date_of_birth :date             not null
 #  email         :string(64)       not null
 #  shirt_size    :integer          default(0)
 #  password_hash :string(128)      not null
