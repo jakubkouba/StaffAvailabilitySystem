@@ -40,8 +40,9 @@ RSpec.describe Employee, type: :model do
     end
   end
 
-  describe 'email address' do
+  it { is_expected.to validate_numericality_of :shirt_size }
 
+  describe 'email address' do
     it 'should be valid' do
       employee.valid?
       expect(employee.errors.messages[:email]).to be(nil)
@@ -55,26 +56,29 @@ RSpec.describe Employee, type: :model do
   end
 
   describe 'validates password' do
-
     it 'should be valid' do
       employee.valid?
       expect(employee.errors.messages[:password]).to be_nil
     end
 
     it 'should be invalid' do
-      %w(lts morethantwentycharacters _$%^&).each do |example|
+      password = Proc.new { |length| rand(36**length).to_s(36) }
+      {
+          less_than_6_chars:    password.call(5),
+          greater_than_2_chars: password.call(22),
+          invalid_chars:        '_$%^&'
+
+      }.each do |state, example|
         employee.password = example
         employee.valid?
-        expect(employee.errors.messages[:password]).not_to be_nil, "failed with #{example}"
+        expect(employee.errors.messages[:password]).not_to be_nil, "failed with \"#{example}\" because it is not #{state.to_s.gsub('_', ' ')}"
       end
-
     end
 
     it 'should not be empty' do
       employee.password = nil
       employee.valid?
       expect(employee.errors.messages[:password]).not_to be nil
-
     end
 
   end
