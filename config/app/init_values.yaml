@@ -1,0 +1,21 @@
+## This file contains default settings for application such as:
+# shirt sizes - used for employees
+# types - to set staff type
+# access_level - application permission
+
+:shirt_sizes:
+  - XS
+  - S
+  - M
+  - L
+  - XL
+  - XXL
+:types:
+  - porter
+  - vaiter
+  - bartender
+  - driver
+:access_leves:
+  - admin
+  - office
+  - staff
