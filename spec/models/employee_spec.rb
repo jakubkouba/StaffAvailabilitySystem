@@ -40,8 +40,6 @@ RSpec.describe Employee, type: :model do
     end
   end
 
-  it { is_expected.to validate_numericality_of :shirt_size }
-
   describe 'email address' do
     it 'should be valid' do
       employee.valid?
@@ -52,6 +50,16 @@ RSpec.describe Employee, type: :model do
       employee.email = 'john.doegmail.com'
       employee.valid?
       expect(employee.errors.messages[:email]).not_to be(nil)
+    end
+  end
+
+  describe 'shirt size' do
+    it 'should be valid' do
+      INIT_VALS[:shirt_sizes].each do |size|
+        employee.shirt_size = size
+        employee.valid?
+        expect(employee.errors.messages[:shirt_size]).to be_nil
+      end
     end
   end
 
@@ -90,5 +98,5 @@ RSpec.describe Employee, type: :model do
   #     expect(employee.errors.messages[:date_of_birth]).not_to be_nil
   #   end
   # end
-  
+
 end

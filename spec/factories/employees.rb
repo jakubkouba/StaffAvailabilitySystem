@@ -21,7 +21,7 @@ FactoryGirl.define do
     surname "Doe"
     date_of_birth "25/03/1983"
     email "john.doe@gmail.com"
-    shirt_size 1
+    shirt_size 'XL'
     password_hash "MyString"
     password_salt "MyString"
     last_login "2016-02-24 14:29:24"

@@ -17,6 +17,8 @@
 
 class Employee < ActiveRecord::Base
 
+  enum :shirt_size => INIT_VALS[:shirt_sizes]
+
   attr_accessor :password
 
   validates :name,
@@ -28,7 +30,10 @@ class Employee < ActiveRecord::Base
 
   validates :email, email: true
 
-  validates :shirt_size, numericality: {only_integer: true}
+  validates :shirt_size, inclusion: {
+      in:      INIT_VALS[:shirt_sizes],
+      message: "Select from following values #{INIT_VALS[:shirt_sizes].join(' ')}"
+  }
 
   validates :password,
             presence: true,
