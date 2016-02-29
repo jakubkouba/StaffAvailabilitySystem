@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160229165755) do
+ActiveRecord::Schema.define(version: 20160229171621) do
 
   create_table "access_levels", force: :cascade do |t|
     t.string "title", limit: 255
@@ -29,6 +29,14 @@ ActiveRecord::Schema.define(version: 20160229165755) do
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
   end
+
+  create_table "positions", id: false, force: :cascade do |t|
+    t.integer "employee_id",   limit: 4, null: false
+    t.integer "staff_type_id", limit: 4, null: false
+  end
+
+  add_index "positions", ["employee_id"], name: "index_positions_on_employee_id", using: :btree
+  add_index "positions", ["staff_type_id"], name: "index_positions_on_staff_type_id", using: :btree
 
   create_table "staff_types", force: :cascade do |t|
     t.string "title", limit: 64
