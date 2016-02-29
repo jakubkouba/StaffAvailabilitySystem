@@ -11,7 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160226164119) do
+ActiveRecord::Schema.define(version: 20160229165755) do
+
+  create_table "access_levels", force: :cascade do |t|
+    t.string "title", limit: 255
+  end
 
   create_table "employees", force: :cascade do |t|
     t.string   "name",          limit: 64,              null: false
@@ -24,6 +28,10 @@ ActiveRecord::Schema.define(version: 20160226164119) do
     t.datetime "last_login"
     t.datetime "created_at",                            null: false
     t.datetime "updated_at",                            null: false
+  end
+
+  create_table "staff_types", force: :cascade do |t|
+    t.string "title", limit: 64
   end
 
 end
