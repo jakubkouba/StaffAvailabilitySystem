@@ -1,12 +1,36 @@
+# == Schema Information
+#
+# Table name: employees
+#
+#  id            :integer          not null, primary key
+#  name          :string(64)       not null
+#  surname       :string(64)       not null
+#  date_of_birth :date             not null
+#  email         :string(64)       not null
+#  shirt_size    :integer          default(0)
+#  password_hash :string(128)      not null
+#  password_salt :string(128)      not null
+#  last_login    :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe EmployeesController, type: :controller do
 
   describe "GET #new" do
-    it "returns http success" do
-      get :new
-      expect(response).to have_http_status(:success)
+
+    before { get :new }
+
+    it { is_expected.to respond_with(200) }
+
+    it { is_expected.to render_template(:new) }
+
+    it 'create new employee object' do
+      expect(assigns[:employee]).to be_a_new(Employee)
     end
+
   end
 
   describe "GET #create" do
