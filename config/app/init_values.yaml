@@ -10,12 +10,12 @@
   - L
   - XL
   - XXL
-:types:
+:staff_types:
   - porter
   - vaiter
   - bartender
   - driver
-:access_leves:
+:access_levels:
   - admin
   - office
   - staff
