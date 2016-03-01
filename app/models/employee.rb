@@ -44,4 +44,30 @@ class Employee < ActiveRecord::Base
 
   # validates :date_of_birth,
   #           format: { with: %r{\A\d{2}/\d{2}/\d{4}\z}, message: 'Enter your date of birth in format dd/mm/yyyy' }
+
+  ##
+  # This method saves employee with staff type and access level
+  #
+  # @param staff_types
+  # @param access_levels
+  #
+  def create_employee(staff_types, access_levels)
+    if self.valid?
+      self.save
+      self.staff_types << staff_types
+
+      if access_levels
+        self.access_levels << access_levels
+      else
+        access_levels = AccessLevel.find_by_title(EMPLOYEE_DEFAULT_ACCESS_LEVEL)
+        self.access_levels << access_levels if access_levels
+      end
+
+      true
+    else
+      false
+    end
+
+  end
+
 end

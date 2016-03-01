@@ -99,4 +99,23 @@ RSpec.describe Employee, type: :model do
   #   end
   # end
 
+  describe '#create_employee' do
+
+    let(:types) { StaffType.all.sample(2) }
+    let(:access_levels) { AccessLevel.all.sample(2) }
+
+    it 'with position and default access level' do
+      expect(employee.create_employee(types, nil)).to be_truthy
+      expect(employee.staff_types.size).to eq 2
+      expect(employee.access_levels.pluck(:title).first).to eq 'staff'
+    end
+
+    it 'with set access level' do
+      expect(employee.create_employee(types, access_levels)).to be_truthy
+      expect(employee.access_levels.size).to eq 2
+    end
+
+  end
+
+
 end
