@@ -18,6 +18,7 @@
 guard 'rake', :task => 'rdoc_dev' do
   watch('README.rdoc')
   watch(%r{doc/doc_md/.+\.(md|rdoc)})
+  watch(%r{app/models/.+\.rb})
 end
 
 guard 'livereload' do
