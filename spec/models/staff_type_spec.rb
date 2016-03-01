@@ -7,13 +7,10 @@
 #
 
 require 'rails_helper'
+require 'support/check_presence_of_init_values'
 
 RSpec.describe StaffType, type: :model do
 
-  it 'should contain default values' do
-    types = StaffType.all.pluck(:title)
-    default = INIT_VALS[:staff_types]
-    expect((types & default).sort).to eq default.sort
-  end
+  it_behaves_like 'init value check', described_class, :title, :staff_types
 
 end
