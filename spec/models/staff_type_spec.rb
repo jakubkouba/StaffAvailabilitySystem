@@ -7,10 +7,15 @@
 #
 
 require 'rails_helper'
-require 'support/check_presence_of_init_values'
+require 'support/check_seed_population'
+require 'support/assignable_for_employee'
 
 RSpec.describe StaffType, type: :model do
 
-  it_behaves_like 'init value check', described_class, :title, :staff_types
+  staff_types = INIT_VALS[:staff_types]
+
+  it_behaves_like 'db:seed validable', described_class, :title, staff_types
+
+  it_behaves_like 'assignable for employee', described_class, staff_types
 
 end

@@ -7,11 +7,15 @@
 #
 
 require 'rails_helper'
-require 'support/check_presence_of_init_values'
+require 'support/check_seed_population'
+require 'support/assignable_for_employee'
 
 RSpec.describe AccessLevel, type: :model do
 
-  it_behaves_like 'init value check', described_class, :title, :access_levels
+  access_level = INIT_VALS[:access_levels]
 
+  it_behaves_like 'db:seed validable', described_class, :title, access_level
+
+  it_behaves_like 'assignable for employee', described_class, access_level
 
 end
