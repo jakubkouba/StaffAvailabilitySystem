@@ -9,5 +9,11 @@
 require 'rails_helper'
 
 RSpec.describe StaffType, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it 'should contain default values' do
+    types = StaffType.all.pluck(:title)
+    default = INIT_VALS[:staff_types]
+    expect((types & default).sort).to eq default.sort
+  end
+
 end
