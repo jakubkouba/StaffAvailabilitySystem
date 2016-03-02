@@ -35,6 +35,8 @@ class Employee < ActiveRecord::Base
 
   validates :email, email: true
 
+  validates :name, :surname, alpha: true
+
   validates :shirt_size, inclusion: {
       in:      INIT_VALS[:shirt_sizes],
       message: "Select from following values #{INIT_VALS[:shirt_sizes].join(' ')}"

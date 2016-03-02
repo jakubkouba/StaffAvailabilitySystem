@@ -40,6 +40,16 @@ RSpec.describe Employee, type: :model do
     end
   end
 
+  it 'invalidates name and surname are' do
+    employee.name = '$John12'
+    employee.surname = '&Doe34'
+
+    employee.valid?
+    expect(employee.errors.messages[:name]).not_to be_nil
+    expect(employee.errors.messages[:surname]).not_to be_nil
+
+  end
+
   describe 'email address' do
     it 'should be valid' do
       employee.valid?
