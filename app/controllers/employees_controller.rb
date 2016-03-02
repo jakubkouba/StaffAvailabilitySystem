@@ -17,7 +17,9 @@
 
 class EmployeesController < ApplicationController
   def new
-    @employee = Employee.new
+    @employee    = Employee.new
+    @shirt_sizes = INIT_VALS[:shirt_sizes].map { |size| [size, size]}
+    @staff_types = StaffType.all
   end
 
   def create

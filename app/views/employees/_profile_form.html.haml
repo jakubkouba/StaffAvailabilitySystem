@@ -1,0 +1,29 @@
+=form_for @employee,
+  html: {class: 'create-profile-form'} do |f|
+  .field
+    =f.label :name
+    =f.text_field :name
+  .filed
+    =f.label :surname
+    =f.text_field :surname
+  .field
+    =f.label :date_of_birth
+    =f.text_field :date_of_birth
+  .field
+    =f.label :email
+    =f.text_field :email
+  .field
+    =f.label :shirt_size
+    =f.select :shirt_size, @shirt_sizes
+  .field.staff-types
+    =f.label :type
+    =f.collection_check_boxes :staff_types, @staff_types, :id, :title
+  .field.password
+    =f.label :password
+    =f.password_field :password
+  .field.password-confirm
+    =f.label :password_confirmation, 'Password confirmation'
+    =f.password_field :password_confirmation
+  .field
+    =f.submit 'Create Profile'
+

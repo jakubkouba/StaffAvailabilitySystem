@@ -31,6 +31,14 @@ RSpec.describe EmployeesController, type: :controller do
       expect(assigns[:employee]).to be_a_new(Employee)
     end
 
+    it 'get shirt sizes array for select' do
+      expect(assigns[:shirt_sizes]).to eq INIT_VALS[:shirt_sizes].map { |size| [size, size] }
+    end
+
+    it 'get staff types' do
+      expect(assigns[:staff_types]).to eq StaffType.all
+    end
+
   end
 
   describe "GET #create" do
