@@ -104,18 +104,31 @@ RSpec.describe Employee, type: :model do
     let(:types) { StaffType.all.sample(2) }
     let(:access_levels) { AccessLevel.all.sample(2) }
 
-    it 'with position and default access level' do
+    it 'assigns default access level' do
       expect(employee.create_employee(types, nil)).to be_truthy
       expect(employee.staff_types.size).to eq 2
       expect(employee.access_levels.pluck(:title).first).to eq 'staff'
     end
 
-    it 'with set access level' do
+    it 'assign given access level' do
       expect(employee.create_employee(types, access_levels)).to be_truthy
       expect(employee.access_levels.size).to eq 2
     end
 
+    it 'triggers #create_password_hash upon save' do
+      expect(employee).to respond_to(:create_password_hash)
+      employee.save
+    end
+
   end
 
+  it 'creates password_salt and password_hash' do
+    employee.password_salt = nil
+    employee.password_hash = nil
+
+    employee.create_password_hash
+    expect(employee.password_salt).not_to be_nil
+    expect(employee.password_hash).not_to be_nil
+  end
 
 end

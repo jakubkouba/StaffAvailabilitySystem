@@ -22,8 +22,8 @@ FactoryGirl.define do
     date_of_birth "25/03/1983"
     email "john.doe@gmail.com"
     shirt_size 'XL'
-    password_hash "MyString"
-    password_salt "MyString"
+    password_salt BCrypt::Engine.generate_salt
+    password_hash BCrypt::Engine.hash_secret('password', '$2a$10$6rjysH18.eqiui2EFZd3Ee')
     last_login "2016-02-24 14:29:24"
     password 'JohnDoe123'
   end
