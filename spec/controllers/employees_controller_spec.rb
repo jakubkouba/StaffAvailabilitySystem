@@ -31,20 +31,42 @@ RSpec.describe EmployeesController, type: :controller do
       expect(assigns[:employee]).to be_a_new(Employee)
     end
 
-    it 'get shirt sizes array for select' do
+    it 'assigns @shirt_sizes' do
       expect(assigns[:shirt_sizes]).to eq INIT_VALS[:shirt_sizes].map { |size| [size, size] }
     end
 
-    it 'get staff types' do
+    it 'assigns @staff_types' do
       expect(assigns[:staff_types]).to eq StaffType.all
+    end
+
+    it 'assigns @access_levels to nil' do
+      expect(assigns(:access_levels)).to be_nil
     end
 
   end
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
+  describe "POST #create" do
+
+    let(:staff_types) { StaffType.all.pluck(:id).sample(2) }
+    let(:valid_attributes) { attributes_for(:employee, staff_types: staff_types) }
+
+    context 'with valid params' do
+
+      it 'creates new employee' do
+        expect { post :create, employee: valid_attributes }.to change(Employee, :count).by(1)
+      end
+
+      it 'assigns newly created employee as @employee' do
+        post :create, employee: valid_attributes
+        expect(assigns(:employee)).to be_a(Employee)
+      end
+
+      it 'redirects to create profile confirmation page' do
+        post :create, employee: valid_attributes
+        expect(response).to redirect_to('/profile/confirmation')
+      end
+
+
     end
   end
 

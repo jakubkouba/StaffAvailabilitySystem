@@ -20,9 +20,11 @@ class EmployeesController < ApplicationController
     @employee    = Employee.new
     @shirt_sizes = INIT_VALS[:shirt_sizes].map { |size| [size, size]}
     @staff_types = StaffType.all
+    @access_levels = nil
   end
 
   def create
+    render json: params, status: 200
   end
 
   def show
