@@ -26,22 +26,23 @@ RSpec.describe Employee, type: :model do
 
   let(:employee) {build(:employee)}
 
-  it 'should be valid' do
+  it 'is valid' do
     employee.valid?
     expect(employee.errors.messages.keys.empty?).to be_truthy
   end
 
-  it 'should validate attributes presence' do
+  context 'attribute presence' do
     [
         :name,
         :surname,
         :date_of_birth,
         :email,
+        :password,
         :password_hash,
         :password_salt
 
     ].each do |attr|
-      is_expected.to validate_presence_of(attr)
+      it { is_expected.to validate_presence_of(attr) }
     end
   end
 
@@ -78,13 +79,13 @@ RSpec.describe Employee, type: :model do
     end
   end
 
-  describe 'validates password' do
-    it 'should be valid' do
+  context 'password' do
+    it 'is valid' do
       employee.valid?
       expect(employee.errors.messages[:password]).to be_nil
     end
 
-    it 'should be invalid' do
+    it 'is invalid' do
       password = Proc.new { |length| rand(36**length).to_s(36) }
       {
           less_than_6_chars:    password.call(5),
@@ -98,10 +99,10 @@ RSpec.describe Employee, type: :model do
       end
     end
 
-    it 'should not be empty' do
-      employee.password = nil
+    it 'is confirmed' do
+      employee.password_confirmation = 'something_different'
       employee.valid?
-      expect(employee.errors.messages[:password]).not_to be nil
+      expect(employee.errors.messages[:password_confirmation]).not_to be_nil
     end
 
   end

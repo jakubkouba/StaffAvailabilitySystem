@@ -32,6 +32,7 @@ class Employee < ActiveRecord::Base
             :surname,
             :date_of_birth,
             :email,
+            :password,
             :password_hash,
             :password_salt, presence: true
 
@@ -45,8 +46,9 @@ class Employee < ActiveRecord::Base
   }
 
   validates :password,
-            presence: true,
-            format:   { with: %r{\A[a-zA-z0-9]{6,20}\z} }
+            format:       { with: %r{\A[a-zA-z0-9]{6,20}\z} },
+            confirmation: { message: 'Confirm your password' }
+
 
   # validates :date_of_birth,
   #           format: { with: %r{\A\d{2}/\d{2}/\d{4}\z}, message: 'Enter your date of birth in format dd/mm/yyyy' }
