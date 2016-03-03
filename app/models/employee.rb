@@ -24,7 +24,9 @@ class Employee < ActiveRecord::Base
 
   attr_accessor :password
 
-  before_save :create_password_hash
+  before_save :create_password_hash,
+              :set_default_access_level,
+              :normalize_name
 
   validates :name,
             :surname,
@@ -49,36 +51,22 @@ class Employee < ActiveRecord::Base
   # validates :date_of_birth,
   #           format: { with: %r{\A\d{2}/\d{2}/\d{4}\z}, message: 'Enter your date of birth in format dd/mm/yyyy' }
 
-  ##
-  # This method saves employee with staff type and access level
-  #
-  # @param staff_types
-  # @param access_levels
-  #
-  def create_employee(staff_types, access_levels)
-    if self.valid?
-      self.save
-      self.staff_types << staff_types
-
-      if access_levels
-        self.access_levels << access_levels
-      else
-        access_levels = AccessLevel.find_by_title(EMPLOYEE_DEFAULT_ACCESS_LEVEL)
-        self.access_levels << access_levels if access_levels
-      end
-
-      true
-    else
-      false
-    end
-
-  end
-
   def create_password_hash
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
       self.password_hash = BCrypt::Engine.hash_secret(password, password_salt)
     end
+  end
+
+  def set_default_access_level
+    default_access_level = AccessLevel.find_by_title('staff')
+    self.access_levels << default_access_level if self.access_levels.empty?
+  end
+
+  def normalize_name
+    normalize    = Proc.new { |string| string.downcase.titleize }
+    self.name    = normalize.call(self.name)
+    self.surname = normalize.call(self.surname)
   end
 
 end

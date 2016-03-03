@@ -19,6 +19,11 @@ require 'rails_helper'
 
 RSpec.describe Employee, type: :model do
 
+  it { is_expected.to have_and_belong_to_many(:staff_types) }
+
+  it { is_expected.to have_and_belong_to_many(:access_levels) }
+
+
   let(:employee) {build(:employee)}
 
   it 'should be valid' do
@@ -109,25 +114,42 @@ RSpec.describe Employee, type: :model do
   #   end
   # end
 
-  describe '#create_employee' do
+  describe 'before #save' do
 
-    let(:types) { StaffType.all.sample(2) }
-    let(:access_levels) { AccessLevel.all.sample(2) }
+    @employee = FactoryGirl.build(:employee)
+    is_expected_call_before_save(@employee, :create_password_hash, :set_default_access_level, :normalize_name)
 
-    it 'assigns default access level' do
-      expect(employee.create_employee(types, nil)).to be_truthy
-      expect(employee.staff_types.size).to eq 2
-      expect(employee.access_levels.pluck(:title).first).to eq 'staff'
+  end
+
+  describe '#save' do
+
+    let(:employee) { build(:employee) }
+
+    it 'creates Employee record' do
+      expect { employee.save }.to change(Employee, :count).by(1)
     end
 
-    it 'assign given access level' do
-      expect(employee.create_employee(types, access_levels)).to be_truthy
-      expect(employee.access_levels.size).to eq 2
+    it 'assigns staff type' do
+      expect { employee.staff_type_ids = StaffType.all.pluck(:id).sample(2) }.to change(employee.staff_types, :size).by(2)
     end
 
-    it 'triggers #create_password_hash upon save' do
-      expect(employee).to respond_to(:create_password_hash)
-      employee.save
+    context 'Authorizations' do
+
+      it 'assigns default access level' do
+        employee.save
+        expect(employee.access_levels.size).to equal 1
+        expect(employee.access_levels.pluck(:title).first).to eq 'staff'
+      end
+
+      it 'assign given access level' do
+        expect { employee.access_level_ids = AccessLevel.all.pluck(:id).sample(2) }.to change(employee.access_levels, :size).by(2)
+      end
+
+      it 'sets default access level to "staff"' do
+        employee.access_levels = []
+        expect { employee.set_default_access_level }.to change(employee.access_levels, :size).from(0).to(1)
+      end
+
     end
 
   end
@@ -139,6 +161,15 @@ RSpec.describe Employee, type: :model do
     employee.create_password_hash
     expect(employee.password_salt).not_to be_nil
     expect(employee.password_hash).not_to be_nil
+  end
+
+  it 'normalize named and surname' do
+    employee.name    = 'jOhn'
+    employee.surname = 'dOE'
+
+    employee.normalize_name
+    expect(employee.name).to eq 'John'
+    expect(employee.surname).to eq 'Doe'
   end
 
 end
