@@ -58,6 +58,7 @@ group :development, :test do
   gem 'launchy'
   gem 'shoulda-matchers', '~> 3.1'
   gem 'faker'
+  gem 'shoulda-callback-matchers'
 end
 
 group :development do
