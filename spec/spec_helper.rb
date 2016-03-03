@@ -16,6 +16,9 @@
 # users commonly want.
 #
 
+# custom macros
+Dir[File.dirname(__FILE__) + "/support/macros/*.rb"].each { |f| require f }
+
 require 'capybara/rspec'
 require 'factory_girl'
 # require 'selenium-webdriver'
@@ -52,6 +55,8 @@ RSpec.configure do |config|
   config.include Capybara::DSL
 
   config.include FactoryGirl::Syntax::Methods
+
+  config.include(ModelMacros, :type => :model)
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
