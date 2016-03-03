@@ -17,7 +17,11 @@
     =f.select :shirt_size, @shirt_sizes
   .field.staff-types
     =f.label :type
-    =f.collection_check_boxes :staff_types, @staff_types, :id, :title
+    =f.collection_check_boxes :staff_type_ids, @staff_types, :id, :title
+  -if @access_levels
+    .field.access-levels
+      =f.label :authorization
+      =f.collection_check_boxes :access_level_ids, @access_levels, :id, :title
   .field.password
     =f.label :password
     =f.password_field :password
