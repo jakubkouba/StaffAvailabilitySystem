@@ -8,6 +8,6 @@
 
 FactoryGirl.define do
   factory :staff_type do
-    title "MyString"
+    sequence(:title) {|n| "staff_type_#{n}"}
   end
 end

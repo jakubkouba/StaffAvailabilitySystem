@@ -38,9 +38,7 @@ RSpec.describe Employee, type: :model do
         :date_of_birth,
         :email,
         :password,
-        :password_hash,
-        :password_salt
-
+        :staff_types
     ].each do |attr|
       it { is_expected.to validate_presence_of(attr) }
     end
@@ -66,16 +64,6 @@ RSpec.describe Employee, type: :model do
       employee.email = 'john.doegmail.com'
       employee.valid?
       expect(employee.errors.messages[:email]).not_to be(nil)
-    end
-  end
-
-  describe 'shirt size' do
-    it 'should be valid' do
-      INIT_VALS[:shirt_sizes].each do |size|
-        employee.shirt_size = size
-        employee.valid?
-        expect(employee.errors.messages[:shirt_size]).to be_nil
-      end
     end
   end
 
@@ -107,10 +95,24 @@ RSpec.describe Employee, type: :model do
 
   end
 
+  #TODO: How to DRY it up? (Macro or shared example)
+  context 'Positions' do
+    it 'throws an error if it tries to assign invalid value to staff_types_ids' do
+      expect { employee.staff_type_ids = 'not_array' }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
+  context 'Authorizations' do
+    it 'throws an error if it tries to assign invalid value to access_level_ids' do
+      expect { employee.access_level_ids = 'not_array' }.to raise_error(ActiveRecord::RecordNotFound)
+    end
+  end
+
   # describe 'validates date of birth format' do
   #   it 'should be invalid' do
   #     employee.date_of_birth = 'incorrect format'
   #     employee.valid?
+  #     puts employee.errors.messages[:date_of_birth]
   #     expect(employee.errors.messages[:date_of_birth]).not_to be_nil
   #   end
   # end
@@ -130,25 +132,37 @@ RSpec.describe Employee, type: :model do
       expect { employee.save }.to change(Employee, :count).by(1)
     end
 
-    it 'assigns staff type' do
-      expect { employee.staff_type_ids = StaffType.all.pluck(:id).sample(2) }.to change(employee.staff_types, :size).by(2)
+    context 'Staff types' do
+      it 'save staff type' do
+        employee.save
+        employee.staff_types do |staff_type|
+          expect(staff_type).not_to be_new_record
+        end
+      end
     end
 
     context 'Authorizations' do
 
+      let(:employee) {build(:employee, :with_access_levels)}
+
       it 'assigns default access level' do
+        employee.access_levels = []
         employee.save
         expect(employee.access_levels.size).to equal 1
         expect(employee.access_levels.pluck(:title).first).to eq 'staff'
       end
 
-      it 'assign given access level' do
-        expect { employee.access_level_ids = AccessLevel.all.pluck(:id).sample(2) }.to change(employee.access_levels, :size).by(2)
-      end
-
+      # Might be duplicit to previous example
       it 'sets default access level to "staff"' do
         employee.access_levels = []
         expect { employee.set_default_access_level }.to change(employee.access_levels, :size).from(0).to(1)
+      end
+
+      it 'save access levels' do
+        employee.save
+        employee.access_levels do |access_level|
+          expect(access_level).not_to be_new_record
+        end
       end
 
     end

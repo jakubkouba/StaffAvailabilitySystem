@@ -32,18 +32,13 @@ class Employee < ActiveRecord::Base
             :surname,
             :date_of_birth,
             :email,
-            :password,
-            :password_hash,
-            :password_salt, presence: true
+            :password, presence: true
 
-  validates :email, email: true
+  validates :staff_types, presence: { message: 'Select Staff Type' }
 
   validates :name, :surname, alpha: true
 
-  validates :shirt_size, inclusion: {
-      in:      INIT_VALS[:shirt_sizes],
-      message: "Select from following values #{INIT_VALS[:shirt_sizes].join(' ')}"
-  }
+  validates :email, email: true
 
   validates :password,
             format:       { with: %r{\A[a-zA-z0-9]{6,20}\z} },
