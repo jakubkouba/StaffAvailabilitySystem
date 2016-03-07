@@ -23,8 +23,7 @@ RSpec.describe Employee, type: :model do
 
   it { is_expected.to have_and_belong_to_many(:access_levels) }
 
-
-  let(:employee) {build(:employee)}
+  let(:employee) {build(:valid_employee)}
 
   it 'is valid' do
     employee.valid?
@@ -90,7 +89,7 @@ RSpec.describe Employee, type: :model do
     it 'is confirmed' do
       employee.password_confirmation = 'something_different'
       employee.valid?
-      expect(employee.errors.messages[:password_confirmation]).not_to be_nil
+      expect(employee.errors.messages[:password_confirmation]).to include('Confirm your password')
     end
 
   end
@@ -126,7 +125,7 @@ RSpec.describe Employee, type: :model do
 
   describe '#save' do
 
-    let(:employee) { build(:employee) }
+    let(:employee) { build(:valid_employee, :with_access_levels_ids) }
 
     it 'creates Employee record' do
       expect { employee.save }.to change(Employee, :count).by(1)
@@ -142,8 +141,6 @@ RSpec.describe Employee, type: :model do
     end
 
     context 'Authorizations' do
-
-      let(:employee) {build(:employee, :with_access_levels)}
 
       it 'assigns default access level' do
         employee.access_levels = []

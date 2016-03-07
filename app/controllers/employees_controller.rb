@@ -16,15 +16,23 @@
 #
 
 class EmployeesController < ApplicationController
+
+  before_action :prepare_view, only: [:new, :create, :edit]
+
   def new
     @employee    = Employee.new
-    @shirt_sizes = INIT_VALS[:shirt_sizes].map { |size| [size, size]}
-    @staff_types = StaffType.all
-    @access_levels = nil
   end
 
   def create
-    render json: params, status: 200
+    @employee = Employee.new(permitted_params)
+    assign_assoc_attributes
+    respond_to do |format|
+      if @employee.save
+        format.html { redirect_to login_path, notice: 'Your account was successfully created' }
+      else
+        format.html { render :new }
+      end
+    end
   end
 
   def show
@@ -37,5 +45,49 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def shirt_sizes
+    @shirt_sizes = INIT_VALS[:shirt_sizes]
+  end
+
+  def staff_types
+    @staff_types = StaffType.all
+  end
+
+  def access_levels
+    @access_levels = nil
+  end
+
+  def prepare_view
+    shirt_sizes
+    staff_types
+    access_levels
+  end
+
+  private
+
+  def permitted_params
+    permitted = [
+        :name,
+        :surname,
+        :email,
+        :date_of_birth,
+        :shirt_size,
+        :password,
+        :password_confirmation
+    ]
+    params.require(:employee).permit(*permitted)
+  end
+
+  def assoc_attributes
+    [
+        :staff_type_ids,
+        :access_level_ids
+    ]
+  end
+
+  def assign_assoc_attributes
+    assoc_attributes.each { |attr| @employee.send("#{attr}=", params.require(:employee).fetch(attr, nil)) }
   end
 end

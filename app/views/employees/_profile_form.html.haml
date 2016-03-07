@@ -1,3 +1,13 @@
+-if @employee.errors.any?
+  %div{id: "error_explanation"}
+    %h2
+      = pluralize(@employee.errors.count, "error")
+      prohibited this employee from being saved:
+    %ul
+    -@employee.errors.full_messages.each do |message|
+      %li= message
+
+
 =form_for @employee,
   html: {class: 'create-profile-form'} do |f|
   .field

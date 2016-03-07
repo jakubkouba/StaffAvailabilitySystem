@@ -32,7 +32,8 @@ class Employee < ActiveRecord::Base
             :surname,
             :date_of_birth,
             :email,
-            :password, presence: true
+            :password,
+            :password_confirmation, presence: true
 
   validates :staff_types, presence: { message: 'Select Staff Type' }
 
@@ -42,7 +43,7 @@ class Employee < ActiveRecord::Base
 
   validates :password,
             format:       { with: %r{\A[a-zA-z0-9]{6,20}\z} },
-            confirmation: { message: 'Confirm your password' }
+            confirmation: { message: 'is incorrect' }
 
 
   # validates :date_of_birth,

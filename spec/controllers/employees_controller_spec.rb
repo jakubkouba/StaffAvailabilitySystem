@@ -19,6 +19,13 @@ require 'rails_helper'
 
 RSpec.describe EmployeesController, type: :controller do
 
+  let(:staff_types) { StaffType.all.pluck(:id).sample(2) }
+
+  let(:valid_attributes) { attributes_for(:post_request_employee) }
+
+  let(:invalid_attributes) {attributes_for(:invalid_employee, staff_types: staff_types)}
+
+
   describe "GET #new" do
 
     before { get :new }
@@ -32,7 +39,7 @@ RSpec.describe EmployeesController, type: :controller do
     end
 
     it 'assigns @shirt_sizes' do
-      expect(assigns[:shirt_sizes]).to eq INIT_VALS[:shirt_sizes].map { |size| [size, size] }
+      expect(assigns[:shirt_sizes]).to eq INIT_VALS[:shirt_sizes]
     end
 
     it 'assigns @staff_types' do
@@ -47,13 +54,15 @@ RSpec.describe EmployeesController, type: :controller do
 
   describe "POST #create" do
 
-    let(:staff_types) { StaffType.all.pluck(:id).sample(2) }
-    let(:valid_attributes) { attributes_for(:employee, staff_types: staff_types) }
-
     context 'with valid params' do
 
       it 'creates new employee' do
         expect { post :create, employee: valid_attributes }.to change(Employee, :count).by(1)
+      end
+
+      it 'assigns staff type ids' do
+        post :create, employee: valid_attributes
+        expect(assigns(:employee).staff_types.size).not_to eq(0)
       end
 
       it 'assigns newly created employee as @employee' do
@@ -63,11 +72,27 @@ RSpec.describe EmployeesController, type: :controller do
 
       it 'redirects to create profile confirmation page' do
         post :create, employee: valid_attributes
-        expect(response).to redirect_to('/profile/confirmation')
+        expect(response).to redirect_to(login_path)
+        expect(flash[:notice]).to eq 'Your account was successfully created'
+      end
+    end
+
+    context 'with invalid params' do
+
+      render_views
+      it 'assigns new created employee to @employee' do
+        post :create, employee: invalid_attributes
+        expect(assigns(:employee)).to be_a(Employee)
       end
 
+      it 'renders new template' do
+        post :create, employee: invalid_attributes
+        expect(response).to render_template(:new)
+        expect(response).to have_http_status(200)
+      end
 
     end
+
   end
 
   describe "GET #show" do

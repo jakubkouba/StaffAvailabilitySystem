@@ -22,31 +22,48 @@ FactoryGirl.define do
     surname "Doe"
     date_of_birth "25/03/1983"
     email "john.doe@gmail.com"
-    shirt_size 2
+    shirt_size 'XL'
     password 'JohnDoe123'
+
 
     transient do
       association_list_count 2
     end
 
-    after(:build) { |employee, evaluator| employee.staff_types = create_list(:staff_type, evaluator.association_list_count) }
+    trait :passwd_confirm do
+      password_confirmation 'JohnDoe123'
+    end
+
+    trait :with_staff_type_ids do
+      staff_type_ids [1,2,'']
+    end
+
+    trait :with_access_levels_ids do
+      access_level_ids [2, 3]
+    end
+
+    trait :with_staff_types do
+      after(:build) { |employee, evaluator| employee.staff_types = create_list(:staff_type, evaluator.association_list_count) }
+    end
+
+    trait :with_access_levels do
+      after(:build) {|employee, evaluator| employee.access_levels = create_list(:access_level, evaluator.association_list_count)}
+    end
 
     trait :invalid do
       name "^&*)scsdvs"
       surname "(*&^$$%43dsd"
       date_of_birth "25/03/1983"
       email "john.doegmail.com"
-      shirt_size 'not a shirt size'
+      shirt_size 'XL'
       password 'John'
 
       after(:build) { |employee| employee.staff_types = [] }
     end
 
     factory :invalid_employee, traits: [:invalid]
-
-    trait :with_access_levels do
-      after(:build) {|employee, evaluator| employee.access_levels = create_list(:access_level, evaluator.association_list_count)}
-    end
+    factory :post_request_employee, traits: [:with_staff_type_ids, :with_access_levels_ids, :passwd_confirm ]
+    factory :valid_employee, traits: [:with_staff_type_ids, :passwd_confirm]
 
   end
 end
