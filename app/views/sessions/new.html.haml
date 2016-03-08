@@ -2,3 +2,13 @@
 
 .message
   = flash[:notice] if flash[:notice]
+
+= form_tag sessions_path, class: 'login-form' do
+  .field.email
+    =label_tag :email
+    =text_field_tag :email, params[:email], type: 'email'
+  .field.password
+    =label_tag :password
+    =password_field_tag :password
+  .field.submit
+    =submit_tag 'Log In'
