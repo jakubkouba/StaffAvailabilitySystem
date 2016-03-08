@@ -17,8 +17,8 @@
     =f.label :surname
     =f.text_field :surname
   .field
-    =f.label :date_of_birth
-    =f.text_field :date_of_birth
+    =f.label :date_of_birth, {for: :date_of_birth}
+    =f.text_field :dob, {id: :date_of_birth}
   .field
     =f.label :email
     =f.text_field :email

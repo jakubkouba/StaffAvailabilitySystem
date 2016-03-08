@@ -8,7 +8,7 @@ RSpec.describe "Create employee profile", :type => :feature do
     within('form#new_employee') do
       fill_in 'Name', with: 'James'
       fill_in 'Surname', with: 'Turner'
-      fill_in 'Date of birth', with: '06/09/1982'
+      fill_in 'date_of_birth', with: '06/09/1982'
       fill_in 'Email', with: 'james.turner@domain.com'
       check 'porter'
       check 'vaiter'

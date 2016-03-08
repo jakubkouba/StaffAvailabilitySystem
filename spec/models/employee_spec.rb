@@ -26,6 +26,7 @@ RSpec.describe Employee, type: :model do
   let(:employee) {build(:valid_employee)}
 
   it 'is valid' do
+
     employee.valid?
     expect(employee.errors.messages.keys.empty?).to be_truthy
   end
@@ -34,7 +35,7 @@ RSpec.describe Employee, type: :model do
     [
         :name,
         :surname,
-        :date_of_birth,
+        :dob,
         :email,
         :password,
         :staff_types
@@ -51,6 +52,11 @@ RSpec.describe Employee, type: :model do
     expect(employee.errors.messages[:name]).not_to be_nil
     expect(employee.errors.messages[:surname]).not_to be_nil
 
+  end
+
+  context 'date of birth' do
+    it { should allow_value('06/09/1982').for(:dob) }
+    it { is_expected.to callback(:set_date_of_birth).after(:validation) }
   end
 
   describe 'email address' do
@@ -89,7 +95,7 @@ RSpec.describe Employee, type: :model do
     it 'is confirmed' do
       employee.password_confirmation = 'something_different'
       employee.valid?
-      expect(employee.errors.messages[:password_confirmation]).to include('Confirm your password')
+      expect(employee.errors.messages[:password_confirmation]).to include('is incorrect')
     end
 
   end

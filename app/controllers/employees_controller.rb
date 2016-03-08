@@ -75,7 +75,8 @@ class EmployeesController < ApplicationController
         :date_of_birth,
         :shirt_size,
         :password,
-        :password_confirmation
+        :password_confirmation,
+        :dob
     ]
     params.require(:employee).permit(*permitted)
   end

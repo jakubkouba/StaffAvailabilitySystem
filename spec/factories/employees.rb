@@ -20,7 +20,7 @@ FactoryGirl.define do
   factory :employee do
     name "John"
     surname "Doe"
-    date_of_birth "25/03/1983"
+    dob "25/03/1983"
     email "john.doe@gmail.com"
     shirt_size 'XL'
     password 'JohnDoe123'

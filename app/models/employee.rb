@@ -22,15 +22,18 @@ class Employee < ActiveRecord::Base
 
   enum :shirt_size => INIT_VALS[:shirt_sizes]
 
-  attr_accessor :password
+  attr_accessor :password, :dob
 
   before_save :create_password_hash,
               :set_default_access_level,
               :normalize_name
 
+  after_validation :set_date_of_birth
+
+
   validates :name,
             :surname,
-            :date_of_birth,
+            :dob,
             :email,
             :password,
             :password_confirmation, presence: true
@@ -46,8 +49,11 @@ class Employee < ActiveRecord::Base
             confirmation: { message: 'is incorrect' }
 
 
-  # validates :date_of_birth,
-  #           format: { with: %r{\A\d{2}/\d{2}/\d{4}\z}, message: 'Enter your date of birth in format dd/mm/yyyy' }
+  validates :dob,
+            format: {
+                with: %r{\A\d{2}/\d{2}/\d{4}\z},
+                message: 'Enter your date of birth in format dd/mm/yyyy'
+            }
 
   def create_password_hash
     if password.present?
@@ -65,6 +71,10 @@ class Employee < ActiveRecord::Base
     normalize    = Proc.new { |string| string.downcase.titleize }
     self.name    = normalize.call(self.name)
     self.surname = normalize.call(self.surname)
+  end
+
+  def set_date_of_birth
+    self.date_of_birth = dob
   end
 
 end
