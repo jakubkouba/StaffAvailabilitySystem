@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'index#index', as: :home
 
-  resource :employees,
-           path: :profile,
-           path_names: { new: :create }
+  resource :employees, path: :profile, path_names: { new: :create } do
+    member do
+      get 'dashboard'
+    end
+  end
 
   get '/login', to: 'sessions#new', as: :login
   get '/log_out', to: 'sessions#destroy', as: :log_out

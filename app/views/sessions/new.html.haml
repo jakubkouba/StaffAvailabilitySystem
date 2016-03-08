@@ -3,6 +3,9 @@
 .message
   = flash[:notice] if flash[:notice]
 
+-if flash[:login_error]
+  .login-error= flash[:login_error]
+=link_to 'Create Profile', new_employees_path
 = form_tag sessions_path, class: 'login-form' do
   .field.email
     =label_tag :email

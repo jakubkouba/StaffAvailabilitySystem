@@ -7,6 +7,7 @@ RSpec.describe "sessions/new.html.haml", type: :view do
       expect(rendered).to have_field('email', type: 'email')
       expect(rendered).to have_field('password')
       expect(rendered).to have_button('Log In')
+      expect(rendered).to have_link('Create Profile', href: '/profile/create')
     end
   end
 end

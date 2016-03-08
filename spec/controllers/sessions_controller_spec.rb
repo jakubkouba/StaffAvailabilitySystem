@@ -10,14 +10,50 @@ RSpec.describe SessionsController, type: :controller do
     end
   end
 
+  describe "POST #create" do
 
-  # describe "GET #create" do
-  #   it "returns http success" do
-  #     get :create
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
-  #
+    let(:employee) { create(:post_request_employee) }
+
+    context 'with valid access credentials' do
+
+      before(:each) { post :create, { email: employee.email, password: employee.password } }
+
+      it 'finds and assigns Employee object to @employee' do
+        expect(assigns(:employee)).to eq(employee)
+      end
+
+      it 'assign employee id to session' do
+        expect(session[:employee_id]).to eq(employee.id)
+      end
+
+      it 'redirects to employee home page' do
+        expect(response).to redirect_to('/profile/dashboard')
+        expected_text = "Hi #{employee.name}, you've been successfully logged in"
+        expect(flash[:notice]).to eq(expected_text)
+        expect(response.body).to have_text(expected_text)
+      end
+
+    end
+
+    context 'with invalid access credentials' do
+
+      before(:each) do
+        employee.email = 'incorrect_email'
+        post :create, { email: employee.email, password: employee.password }
+      end
+
+      render_views
+
+      it { is_expected.to render_template(:new) }
+
+      it 'displays error message' do
+        expect(response.body).to have_text 'Incorrect email or password'
+      end
+
+    end
+
+  end
+
   # describe "GET #destroy" do
   #   it "returns http success" do
   #     get :destroy

@@ -1,0 +1,7 @@
+%h1 Dashboard
+
+-if flash[:notice]
+  .status= flash[:notice]
+
+.welcome= "Hi #{@employee.name} #{@employee.surname}, welcome to SAS"
+

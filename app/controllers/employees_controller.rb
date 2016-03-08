@@ -19,6 +19,8 @@ class EmployeesController < ApplicationController
 
   before_action :prepare_view, only: [:new, :create, :edit]
 
+  before_action :current_employee, except: [:new, :create]
+
   def new
     @employee    = Employee.new
   end
@@ -45,6 +47,10 @@ class EmployeesController < ApplicationController
   end
 
   def destroy
+  end
+
+  def dashboard
+
   end
 
   def shirt_sizes
