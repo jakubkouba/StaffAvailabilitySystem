@@ -190,4 +190,17 @@ RSpec.describe Employee, type: :model do
     expect(employee.surname).to eq 'Doe'
   end
 
+  context 'Authentication' do
+    it 'verifies employee by email and password' do
+      email = 'employee@example.com'
+      password = 'SuperSecret'
+      employee.email = email
+      employee.password = password
+      employee.password_confirmation = password
+      employee.save!
+      expect(Employee.authenticate(email, password)).to eq(employee)
+    end
+
+  end
+
 end

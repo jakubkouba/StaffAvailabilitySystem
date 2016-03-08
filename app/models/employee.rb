@@ -55,6 +55,22 @@ class Employee < ActiveRecord::Base
                 message: 'Enter your date of birth in format dd/mm/yyyy'
             }
 
+  class << self
+    ##
+    # Authenticates employee
+    # @param email
+    # @param password
+    #
+    def authenticate(email, password)
+      employee = self.find_by_email(email)
+      if employee && employee.password_hash = BCrypt::Engine.hash_secret(password, employee.password_salt)
+        employee
+      else
+        nil
+      end
+    end
+  end
+
   def create_password_hash
     if password.present?
       self.password_salt = BCrypt::Engine.generate_salt
