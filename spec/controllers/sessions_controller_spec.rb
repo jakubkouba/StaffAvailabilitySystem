@@ -54,11 +54,15 @@ RSpec.describe SessionsController, type: :controller do
 
   end
 
-  # describe "GET #destroy" do
-  #   it "returns http success" do
-  #     get :destroy
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  describe "GET #destroy" do
+
+    before { get :destroy }
+
+    it "destroy session and redirects to login" do
+      expect(session[:employee_id]).to be_nil
+      expect(response).to redirect_to('/login')
+      expect(flash[:notice]).to eq("You've been successfully logged out")
+    end
+  end
 
 end
