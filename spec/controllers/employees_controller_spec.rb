@@ -95,32 +95,42 @@ RSpec.describe EmployeesController, type: :controller do
 
   end
 
-  describe "GET #show" do
-    it "returns http success" do
-      get :show
-      expect(response).to have_http_status(:success)
+  describe "GET #dashboard" do
+
+    let(:employee) { create(:post_request_employee) }
+    before { get :dashboard, nil, { employee_id: employee.id } }
+
+    it 'assigns employee from session to @employee' do
+      expect(assigns(:employee).id).to eq employee.id
     end
   end
 
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
-  end
-
-  describe "GET #destroy" do
-    it "returns http success" do
-      get :destroy
-      expect(response).to have_http_status(:success)
-    end
-  end
+  # describe "GET #show" do
+  #   it "returns http success" do
+  #     get :show
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
+  #
+  # describe "GET #edit" do
+  #   it "returns http success" do
+  #     get :edit
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
+  #
+  # describe "GET #update" do
+  #   it "returns http success" do
+  #     get :update
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
+  #
+  # describe "GET #destroy" do
+  #   it "returns http success" do
+  #     get :destroy
+  #     expect(response).to have_http_status(:success)
+  #   end
+  # end
 
 end

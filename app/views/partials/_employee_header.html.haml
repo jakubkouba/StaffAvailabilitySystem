@@ -1,0 +1,6 @@
+.notifications
+  -if flash[:notice]
+    .status= flash[:notice]
+-if @employee
+  .welcome= "Hi #{@employee.name} #{@employee.surname}, welcome to SAS"
+  .log-out= link_to 'Log out', log_out_path
