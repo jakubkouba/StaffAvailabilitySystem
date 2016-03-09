@@ -30,7 +30,6 @@ RSpec.describe SessionsController, type: :controller do
         expect(response).to redirect_to('/profile/dashboard')
         expected_text = "Hi #{employee.name}, you've been successfully logged in"
         expect(flash[:notice]).to eq(expected_text)
-        expect(response.body).to have_text(expected_text)
       end
 
     end
