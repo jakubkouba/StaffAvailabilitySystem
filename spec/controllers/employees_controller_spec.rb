@@ -25,6 +25,10 @@ RSpec.describe EmployeesController, type: :controller do
 
   let(:invalid_attributes) {attributes_for(:invalid_employee, staff_types: staff_types)}
 
+  describe "Require login"  do
+    it_expects_to_be_logged_for(:dashboard, :edit)
+  end
+
 
   describe "GET #new" do
 
