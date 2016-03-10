@@ -3,3 +3,7 @@
     text-transform: capitalize;
   }
 }
+
+.form-field-error{
+  color: map_get($foundation-palette, alert);
+}
