@@ -1,12 +1,31 @@
-%h1.home= 'This is Home page'
-%p
-  Welcome to Staff Availability System.
-  %br
-  This application is designed for employees to put their available time into system
-  and so provide to employer ability to see who is timely available in what day and what time.
+.row.index
+  .column.large-6.large-centered
+    %h3.text-center Welcome to Staff Availability System
+    .app-description
+      %p.text-justify
+        This is an application demo for presentation purposes.
+        Purpose of this app is to keep list of employees whose are able to choose their working hours
+        based on their availability. This, therefore, provides ability to employer to see who is timely available in what day and what time.
+        This app was primarily designed for catering agencies, but it can be used in any environment where flexible working hours are required.
+      %hr
+      %p.text-justify
+        All copyrights regards this application are reserved to
+        %em Tomas Pisecky
+        as the original creator who came with this idea and
+        %em Jakub Adler
+        as the one who implemented it.
 
-%p
-  Create your account
-  =link_to 'here', new_employees_path, {class: 'create-account-link'}
-  if you don't have any, or
-  =link_to 'Login', login_path, {class: 'login-link'}
+      %p
+        This application is build upon
+        %ul
+          %li Rails (ruby web app framework)
+          %li Foundation (Sass based frontend framework
+      %h4.text-center To start using application. You can do following.
+      .text-center.how-to-start
+        =link_to 'Create Account', new_employees_path, {class: 'create-account-link button'}
+        %p If you don't have one. Or
+        =link_to 'Login', login_path, {class: 'login-link button'}
+        %p If you have.
+        %p
+          Thank you for using our amazing App.
+          %strong Enjoy

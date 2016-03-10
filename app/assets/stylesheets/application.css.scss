@@ -16,4 +16,9 @@
 @import "foundation/foundation_and_overrides";
 
 // Components
+@import "components/mixins";
+@import "components/global";
 @import "components/header";
+
+// Controllers
+@import "index/*";

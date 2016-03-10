@@ -1,3 +1,10 @@
 header{
-  background-color: map_get($foundation-palette, primary)
+  background-color: map_get($foundation-palette, primary);
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+.app-title{
+  color: $white;
+  margin: 0;
 }

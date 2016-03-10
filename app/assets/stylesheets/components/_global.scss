@@ -1,0 +1,7 @@
+body{
+  background-color: #ECF1F9;
+}
+
+.button{
+  @include radius();
+}
