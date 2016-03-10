@@ -7,37 +7,42 @@
     -@employee.errors.full_messages.each do |message|
       %li= message
 
-
-=form_for @employee,
-  html: {class: 'create-profile-form'} do |f|
-  .field
-    =f.label :name
-    =f.text_field :name
-  .filed
-    =f.label :surname
-    =f.text_field :surname
-  .field
-    =f.label :date_of_birth, {for: :date_of_birth}
-    =f.text_field :dob, {id: :date_of_birth}
-  .field
-    =f.label :email
-    =f.text_field :email
-  .field
-    =f.label :shirt_size
-    =f.select :shirt_size, @shirt_sizes
-  .field.staff-types
-    =f.label :type
-    =f.collection_check_boxes :staff_type_ids, @staff_types, :id, :title
-  -if @access_levels
-    .field.access-levels
-      =f.label :authorization
-      =f.collection_check_boxes :access_level_ids, @access_levels, :id, :title
-  .field.password
-    =f.label :password
-    =f.password_field :password
-  .field.password-confirm
-    =f.label :password_confirmation, 'Password confirmation'
-    =f.password_field :password_confirmation
-  .field
-    =f.submit 'Create Profile'
+.create-profile-form
+  =form_for @employee,
+    html: {class: 'create-profile-form'} do |f|
+    .row
+      -form_field_box :name do
+        =f.label :name
+        =f.text_field :name
+      -form_field_box :surname do
+        =f.label :surname
+        =f.text_field :surname
+    .row
+      -form_field_box :email do
+        =f.label :email
+        =f.text_field :email
+      -form_field_box 'date-of-birth' do
+        =f.label :date_of_birth, {for: :date_of_birth}
+        =f.text_field :dob, {id: :date_of_birth}
+    .row
+      -form_field_box 'shirt-size' do
+        =f.label :shirt_size
+        =f.select :shirt_size, @shirt_sizes
+      -form_field_box 'staff-types' do
+        =f.label :type
+        =f.collection_check_boxes :staff_type_ids, @staff_types, :id, :title
+    -if @access_levels
+      .row
+        -form_field_box 'access-levels' do
+          =f.label :authorization
+          =f.collection_check_boxes :access_level_ids, @access_levels, :id, :title
+    .row
+      -form_field_box :password do
+        =f.label :password
+        =f.password_field :password
+      -form_field_box 'password-confirm' do
+        =f.label :password_confirmation, 'Password confirmation'
+        =f.password_field :password_confirmation
+    .text-center
+      =f.submit 'Create Profile', {class: :button}
 
