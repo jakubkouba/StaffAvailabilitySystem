@@ -17,4 +17,5 @@
     -if flash[:notice]
       .notifications= flash[:notice]
 
-    = yield
+    .row.main-content
+      = yield
