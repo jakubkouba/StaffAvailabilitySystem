@@ -13,3 +13,7 @@ body{
 .error{
   color: map_get($foundation-palette, alert)
 }
+
+%no-list{
+  list-style-type: none;
+}

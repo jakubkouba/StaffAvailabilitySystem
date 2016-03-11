@@ -1,0 +1,36 @@
+
+.notifications{
+  text-align: right;
+}
+
+.desktop-header{
+
+  display: none;
+
+  @include breakpoint(medium){
+    display: block;
+    float: right;
+  }
+
+  ul{
+    @extend %no-list;
+
+    li {
+      float: left;
+    }
+
+    a{
+      color: $light-gray;
+      margin-left: 10px;
+    }
+  }
+}
+
+.mobile-header{
+  float: right;
+  
+  @include breakpoint(medium){
+    display: none;
+
+  }
+}

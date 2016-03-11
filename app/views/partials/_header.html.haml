@@ -1,5 +1,4 @@
 %header.clearfix
   .app-title-container.float-left
     %h2.app-title Staff Availability System
-  .employee-section.float-right
-    =render partial: 'employees/partials/header', locals: { name: @employee.name } if is_logged_in?
+  =render partial: 'employees/partials/header', locals: { name: @employee.name } if is_logged_in?
