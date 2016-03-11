@@ -1,0 +1,12 @@
+.login-error{
+  @extend .error;
+  @extend .text-center;
+  @extend .help-text;
+}
+
+.login-form{
+  @extend .large-6;
+  @extend .large-centered;
+  @extend .medium-8;
+  @extend .medium-centered;
+}

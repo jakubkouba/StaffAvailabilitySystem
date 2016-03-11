@@ -1,14 +1,17 @@
-%h1 Login
+%h1.text-center Login
 
--if flash[:login_error]
-  .login-error= flash[:login_error]
-=link_to 'Create Profile', new_employees_path
+.row
 = form_tag sessions_path, class: 'login-form' do
-  .field.email
-    =label_tag :email
-    =text_field_tag :email, params[:email], type: 'email'
-  .field.password
-    =label_tag :password
-    =password_field_tag :password
-  .field.submit
-    =submit_tag 'Log In'
+  -if flash[:login_error]
+    .login-error.text-center
+      Login Failed:
+      =flash[:login_error]
+
+  =label_tag :email
+  =text_field_tag :email, params[:email], type: 'email'
+
+  =label_tag :password
+  =password_field_tag :password
+
+  .create-profile.float-right= link_to 'Create Profile', new_employees_path
+  .field.submit= submit_tag 'Log In', { class: 'button' }

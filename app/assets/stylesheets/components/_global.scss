@@ -9,3 +9,7 @@ body{
 .main-content{
 
 }
+
+.error{
+  color: map_get($foundation-palette, alert)
+}
