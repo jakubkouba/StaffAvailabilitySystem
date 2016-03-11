@@ -1,6 +1,6 @@
 .create-profile-form
-  -errors_messages = @employee.errors.any? ? @employee.errors.messages : {}
-  =form_for @employee,
+  -errors_messages = employee.errors.any? ? employee.errors.messages : {}
+  =form_for employee,
     html: {class: 'create-profile-form'} do |f|
     .row
       -form_field_box :name, errors_messages do
@@ -19,10 +19,10 @@
     .row
       -form_field_box :shirt_size, errors_messages do
         =f.label :shirt_size
-        =f.select :shirt_size, @shirt_sizes
+        =f.select :shirt_size, shirt_sizes
       -form_field_box :staff_types, errors_messages do
         =f.label :type
-        =f.collection_check_boxes :staff_type_ids, @staff_types, :id, :title
+        =f.collection_check_boxes :staff_type_ids, staff_types, :id, :title
     .row
       -form_field_box :password, errors_messages do
         =f.label :password
