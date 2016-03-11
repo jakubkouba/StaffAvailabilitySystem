@@ -10,31 +10,27 @@ RSpec.describe "employees/new.html.haml", type: :view do
 
   it 'displays "Create Profile"' do
     render
-    expect(rendered).to match /Create Profile/
+    expect(rendered).to have_content('Create Profile')
   end
 
   context 'create Profile Form' do
 
     it 'renders form' do
       render
-      expect(rendered).to match /create-profile-form/i
+      expect(rendered).to have_selector('form#new_employee')
     end
 
     it 'displays shirt sizes' do
       render
-      expect(rendered).to match /shirt size/i
+      expect(rendered).to have_selector('select#employee_shirt_size')
     end
 
-    it 'displays staff types' do
-      render
-      expect(rendered).to match /staff_type/i
-    end
-
-    it 'displays access levels' do
-      assign(:access_levels, AccessLevel.all)
-      render
-      expect(rendered).to match /authorization/i
-    end
-
-    end
+    #TODO: Does it make a sense to test this?
+    # it 'displays staff types' do
+    #   render
+    #   StaffType.all.pluck(:id).each do |id|
+    #     expect(rendered).to match /staff_type/i
+    #   end
+    # end
+  end
 end

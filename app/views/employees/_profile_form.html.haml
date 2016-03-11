@@ -23,11 +23,6 @@
       -form_field_box :staff_types, errors_messages do
         =f.label :type
         =f.collection_check_boxes :staff_type_ids, @staff_types, :id, :title
-    -if @access_levels
-      .row
-        -form_field_box :access_levels, errors_messages do
-          =f.label :authorization
-          =f.collection_check_boxes :access_level_ids, @access_levels, :id, :title
     .row
       -form_field_box :password, errors_messages do
         =f.label :password
