@@ -15,7 +15,8 @@ RSpec.describe 'Employee Login / Log out', :type => :feature do
   end
 
   it { is_expected.to have_link('Log out', href: '/log_out') }
-  it { is_expected.to have_content "Hi #{employee.name} #{employee.surname}, welcome to SAS" }
+  it { is_expected.to have_link('My Profile', href: '/profile/dashboard') }
+  it { is_expected.to have_content "Hi #{employee.name}" }
 
   it 'has right location' do
     expect(current_path).to eq('/profile/dashboard')

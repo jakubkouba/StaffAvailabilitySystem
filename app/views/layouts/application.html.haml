@@ -12,7 +12,9 @@
     = csrf_meta_tag
 
   %body
-    = render 'partials/header'
+
+    .expanded.row
+      = render 'partials/header'
 
     -if flash[:notice]
       .notifications= flash[:notice]
