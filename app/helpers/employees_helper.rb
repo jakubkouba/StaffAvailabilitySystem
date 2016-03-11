@@ -5,7 +5,7 @@ module EmployeesHelper
     haml_tag :div, class: "field #{class_name} columns small-12 medium-6 large-6" do
       yield
       if errors[field]
-        haml_tag :p, class: "help-text error #{class_name}-error" do
+        haml_tag :p, class: "help-text form-field-error #{class_name}-error" do
           haml_concat errors[field].first
         end
       end
