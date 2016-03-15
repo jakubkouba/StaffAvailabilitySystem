@@ -28,22 +28,24 @@ module ControllerMacros
 
           render_views
           before(:each) do
-            @employee             = create(:post_request_employee)
-            session[:employee_id] = @employee.id
+            @employee_id = login_employee
           end
 
           actions.each do |action|
             it "displays #{action} view and menu if user logged in" do
-              get action, nil, { employee_id: @employee.id }
+              get action, nil, { employee_id: @employee_id }
               expect(response).to render_template(action)
               expect(response).to render_template(layout: 'layouts/application')
               expect(response.body).to have_selector('.employee.main-menu')
             end
 
+            it "get current employee" do
+              get action, nil, { employee_id: @employee_id }
+              expect(assigns(:employee)).to be_a_kind_of(Employee)
+            end
           end
         end
       end
     end
-
   end
 end
