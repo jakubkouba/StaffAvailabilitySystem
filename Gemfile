@@ -71,5 +71,6 @@ group :development do
   gem 'guard-livereload'
   gem 'guard-rspec', require: false
   gem 'guard-bundler', require: false
+  gem 'rack-mini-profiler'
 
 end
