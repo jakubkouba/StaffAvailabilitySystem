@@ -14,7 +14,7 @@ RSpec.describe 'Employee Login / Log out', :type => :feature do
     end
   end
 
-  it { is_expected.to have_link('Log out', href: '/log_out') }
+  it { is_expected.to have_link('Log out', href: '/log_out', count: 2) }
   it { is_expected.to have_link('My Profile', href: '/profile/dashboard') }
   it { is_expected.to have_content "Hi #{employee.name}" }
 
@@ -23,8 +23,9 @@ RSpec.describe 'Employee Login / Log out', :type => :feature do
   end
 
   it 'logs employee out' do
-    click_link('Log out', href: '/log_out')
+    first(:link, 'Log out').click
     expect(page).to have_content "You've been successfully logged out"
+
   end
 
 end
