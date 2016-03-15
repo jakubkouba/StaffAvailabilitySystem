@@ -25,10 +25,7 @@ RSpec.describe EmployeesController, type: :controller do
 
   let(:invalid_attributes) {attributes_for(:invalid_employee, staff_types: staff_types)}
 
-  describe "Require login"  do
-    it_expects_to_be_logged_for(:dashboard, :edit)
-  end
-
+  it_expects_authorization_for(:dashboard, :edit)
 
   describe "GET #new" do
 
@@ -52,6 +49,18 @@ RSpec.describe EmployeesController, type: :controller do
 
     it 'assigns @access_levels to nil' do
       expect(assigns(:access_levels)).to be_nil
+    end
+
+    describe "redirects to dashboard when logged in" do
+
+      before do
+        @employee             = create(:post_request_employee)
+        session[:employee_id] = @employee.id
+        get :new, nil, employee_id: @employee.id
+      end
+
+      it {is_expected.to redirect_to('/profile/dashboard')}
+
     end
 
   end

@@ -1,15 +1,6 @@
 !!! 5
 %html{ :lang => "en" }
-  %head
-    %meta{ :charset => "utf-8" }
-
-    %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1.0" }
-
-    %title= content_for?(:title) ? yield(:title) : "Untitled"
-
-    = stylesheet_link_tag "application"
-    = javascript_include_tag "application", "data-turbolinks-track" => true
-    = csrf_meta_tag
+  =render 'layouts/partials/head'
 
   %body
 
@@ -19,5 +10,11 @@
     -if flash[:notice]
       .notifications= flash[:notice]
 
-    .row.column.main-content
-      = yield
+    .row.expanded.column.main-content
+      -if is_logged_in?
+        .columns.large-3
+          =content_for?(:menu) ? yield(:menu) : nil
+        .columns.large-9
+          = yield
+      -else
+        =yield

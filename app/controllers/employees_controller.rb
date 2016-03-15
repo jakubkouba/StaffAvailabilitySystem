@@ -22,6 +22,7 @@ class EmployeesController < ApplicationController
   before_action :current_employee, :check_login, except: [:new, :create]
 
   def new
+    redirect_to dashboard_employees_path if is_logged_in?
     @employee    = Employee.new
   end
 
