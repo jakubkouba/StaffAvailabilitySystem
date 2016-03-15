@@ -1,3 +1,20 @@
 =render_menu
 
 -main_title 'Profile Info'
+
+%table
+  %tbody
+    %tr
+      %td Name
+      %td= @employee.name
+    %rt
+      %td Surname
+      %td= @employee.surname
+    %tr
+      %td Email
+      %td= @employee.email
+    %rt
+      %td Type
+      %td= @employee.staff_types.pluck(:title).join(',')
+
+=link_to('Edit', edit_employees_path, class: :button)
