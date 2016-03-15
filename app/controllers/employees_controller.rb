@@ -51,6 +51,12 @@ class EmployeesController < ApplicationController
   end
 
   def dashboard
+  end
+
+  def info
+  end
+
+  def availability
 
   end
 

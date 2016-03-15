@@ -25,7 +25,7 @@ RSpec.describe EmployeesController, type: :controller do
 
   let(:invalid_attributes) {attributes_for(:invalid_employee, staff_types: staff_types)}
 
-  it_expects_authorization_for(:dashboard, :edit)
+  it_expects_authorization_for(:dashboard, :edit, :info, :availability)
 
   describe "GET #new" do
 

@@ -1,6 +1,5 @@
 .employee.main-menu
   =render partial: 'employees/partials/header_menu', locals: {name: @employee.name}
-%ul
-  %li Dashboard
-  %li Availability
-  %li Jobs
+
+
+=build_menu_for(:employee)
