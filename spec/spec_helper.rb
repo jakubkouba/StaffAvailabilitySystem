@@ -58,6 +58,7 @@ RSpec.configure do |config|
 
   config.include(ModelMacros, :type => :model)
   config.include(ControllerMacros, :type => :controller)
+  config.include(ViewMacros, :type => :view)
 
 # The settings below are suggested to provide a good initial experience
 # with RSpec, but feel free to customize to your heart's content.
