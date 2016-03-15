@@ -3,10 +3,25 @@ require 'rails_helper'
 RSpec.describe SessionsController, type: :controller do
 
   describe "GET #new" do
-    it "returns http success and renders new template" do
-      get :new
-      expect(response).to have_http_status(:success)
-      expect(response).to render_template(:new)
+
+    context "user is logged in" do
+
+      before do
+        e_id = login_employee
+        get :new, nil, employee_id: e_id
+      end
+
+      it { is_expected.to redirect_to('/profile/dashboard') }
+    end
+
+    context "user is not logged in" do
+      before { get :new }
+
+      it "returns http success and renders new template" do
+        expect(response).to have_http_status(:success)
+        expect(response).to render_template(:new)
+      end
+
     end
   end
 

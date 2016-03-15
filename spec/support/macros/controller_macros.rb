@@ -4,6 +4,12 @@ module ControllerMacros
     base.extend(ClassMethods)
   end
 
+  def login_employee
+    employee = FactoryGirl.create(:post_request_employee)
+    session[:employee_id] = employee.id
+    employee.id
+  end
+
   module ClassMethods
     def it_expects_authorization_for(*actions)
       describe "authorization" do
@@ -38,5 +44,6 @@ module ControllerMacros
         end
       end
     end
+
   end
 end

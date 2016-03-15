@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def new
+    redirect_to dashboard_employees_path if is_logged_in?
   end
 
   def create
