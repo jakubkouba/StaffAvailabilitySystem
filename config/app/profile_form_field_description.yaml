@@ -1,0 +1,21 @@
+:name:
+  :placeholder: Enter your name
+  :help_text: Some help
+:surname:
+  :placeholder: Enter your surname
+:email:
+  :placeholder: Enter your email
+  :help_text: It should be valid email address
+:dob:
+  :placeholder: Enter your date of bitrh
+  :help_text: Date must be in following format dd/mm/yyyy
+:shirt_size:
+  :help_text: Select from options above
+:staff_type:
+  :help_text: Check position you feel comfortable with
+:password:
+  :placeholder: Enter your password
+  :help_text: Password can contain just alphanumeric characters and digits
+:password_confirmation:
+  :placeholder: Confirm your password
+  :help_text: It should be same as you typed to the field before
