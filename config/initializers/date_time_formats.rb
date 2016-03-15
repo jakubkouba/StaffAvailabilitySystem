@@ -1,0 +1,1 @@
+Date::DATE_FORMATS[:input] = "%d/%m/%Y"
