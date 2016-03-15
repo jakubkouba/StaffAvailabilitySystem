@@ -31,4 +31,10 @@ module EmployeesHelper
     end
   end
 
+  def render_menu
+    content_for :menu do
+      render 'employees/partials/menu'
+    end
+  end
+
 end
