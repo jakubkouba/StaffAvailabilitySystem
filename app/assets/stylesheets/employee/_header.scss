@@ -1,7 +1,5 @@
 
-.notifications{
-  text-align: right;
-}
+
 
 .desktop-header{
 
@@ -10,6 +8,10 @@
   @include breakpoint(medium){
     display: block;
     float: right;
+  }
+
+  .notifications{
+    text-align: right;
   }
 
   ul{
@@ -21,14 +23,14 @@
 
     a{
       color: $light-gray;
-      margin-left: 10px;
+      margin-left: 15px;
     }
   }
 }
 
 .mobile-header{
   float: right;
-  
+
   @include breakpoint(medium){
     display: none;
 
