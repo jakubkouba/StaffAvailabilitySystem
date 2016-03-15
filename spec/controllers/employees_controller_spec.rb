@@ -54,9 +54,8 @@ RSpec.describe EmployeesController, type: :controller do
     describe "redirects to dashboard when logged in" do
 
       before do
-        @employee             = create(:post_request_employee)
-        session[:employee_id] = @employee.id
-        get :new, nil, employee_id: @employee.id
+        employee_id = login_employee
+        get :new, nil, employee_id: employee_id
       end
 
       it {is_expected.to redirect_to('/profile/dashboard')}
