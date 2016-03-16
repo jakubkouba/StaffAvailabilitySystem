@@ -1,5 +1,3 @@
-.employee.main-menu
-  =render partial: 'employees/partials/header_menu', locals: {name: @employee.name}
-
-
-=build_menu_for(:employee)
+.employee
+  =render partial: 'employees/partials/header_menu', locals: { name: @employee.name, link_if: true}
+  =build_menu_for(:employee)
