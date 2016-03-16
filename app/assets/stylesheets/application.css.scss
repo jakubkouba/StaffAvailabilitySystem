@@ -16,6 +16,7 @@
 @import "foundation/foundation_and_overrides";
 
 // Components
+@import "components/helpers";
 @import "components/mixins";
 @import "components/global";
 @import "components/header";
@@ -26,6 +27,7 @@
 // Employee
 @import "employee/create_porofile_form";
 @import "employee/header";
+@import "employee/menu";
 
 // Sessions
 @import "sessions/new"; // login form
