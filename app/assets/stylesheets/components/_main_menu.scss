@@ -1,0 +1,21 @@
+.main-menu {
+  ul {
+    @extend %no-list
+  }
+}
+
+section {
+
+  &.main-menu {
+    @extend .columns;
+    @extend .large-3
+  }
+
+  .desktop {
+    display: none;
+
+    @include breakpoint(large) {
+      display: block;
+    }
+  }
+}
