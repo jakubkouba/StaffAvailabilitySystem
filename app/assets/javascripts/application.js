@@ -11,9 +11,20 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
+// require jquery_ujs
 //= require foundation
-//= require turbolinks
-//= require_tree .
+//= require './components/main_menu.js'
+// require turbolinks
 
-$(function(){ $(document).foundation(); });
+
+
+//$(function(){ $(document).foundation(); });
+
+$(function(){
+
+    // Foundation
+    $(document).foundation();
+
+    // Menu
+    mainMenu().init();
+});
