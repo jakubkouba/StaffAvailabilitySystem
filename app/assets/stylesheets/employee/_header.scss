@@ -1,13 +1,10 @@
 
-
-
-.desktop-header{
+.header-menu{
 
   display: none;
 
   @include breakpoint(medium){
     display: block;
-    float: right;
   }
 
   .notifications{
@@ -16,6 +13,7 @@
 
   ul{
     @extend %no-list;
+    @extend %no-margin;
 
     li {
       float: left;
@@ -25,14 +23,5 @@
       color: $light-gray;
       margin-left: 15px;
     }
-  }
-}
-
-.mobile-header{
-  float: right;
-
-  @include breakpoint(medium){
-    display: none;
-
   }
 }

@@ -1,4 +1,7 @@
 .actions
   %ul
     %li.log-out= link_to 'Log out', log_out_path
-    %li.profile= link_to_if(action_name != 'info', 'My Profile', info_employees_path)
+    -if link_if
+      %li.profile= link_to_if(action_name != 'info', 'My Profile', info_employees_path)
+    -else
+      %li.profile= link_to 'My Profile', info_employees_path
