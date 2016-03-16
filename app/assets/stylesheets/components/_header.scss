@@ -1,18 +1,11 @@
-header{
-  background-color: map_get($foundation-palette, primary);
-  padding: 5px;
-  margin-bottom: 20px;
+.title-bar-title{
+  @include breakpoint(large){
+    font-size: 30px;
+  }
 }
 
-.app-title{
-  color: $white;
-  margin: 0;
-}
-
-.app-title-container{
-  //@extend .column, .small-10, .medium-5, .large-6, .large-collapse
-}
-
-.employee-section{
-
+.menu-toggle{
+  @include breakpoint(large){
+    display: none;
+  }
 }
