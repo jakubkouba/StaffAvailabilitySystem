@@ -1,0 +1,23 @@
+-errors_messages = employee.errors.any? ? employee.errors.messages : {}
+=form_for employee, url: '/edit', html: {class: 'create-profile-form'} do |f|
+  .row
+    -form_field_box :name, errors_messages do
+      =f.label :name
+      =f.text_field :name
+    -form_field_box :surname, errors_messages do
+      =f.label :surname
+      =f.text_field :surname
+  .row
+    -form_field_box :email, errors_messages do
+      =f.label :email
+      =f.text_field :email
+    -form_field_box :dob, errors_messages do
+      =f.label :date_of_birth, {for: :date_of_birth}
+      =f.text_field :dob, {id: :date_of_birth}
+  .row
+    -form_field_box :shirt_size, errors_messages do
+      =f.label :shirt_size
+      =f.select :shirt_size, shirt_sizes
+    -form_field_box :staff_types, errors_messages do
+      =f.label :type
+      =f.collection_check_boxes :staff_type_ids, staff_types, :id, :title
