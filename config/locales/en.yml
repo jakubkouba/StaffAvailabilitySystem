@@ -21,3 +21,4 @@
 
 en:
   hello: "Hello world"
+  key: "if @access_levels do"
