@@ -5,7 +5,7 @@ module ViewMacros
   end
 
   def prepare_employee
-    @employee = create(:post_request_employee)
+    @employee = build(:post_request_employee)
   end
 
   module ClassMethods
