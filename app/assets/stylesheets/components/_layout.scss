@@ -2,3 +2,10 @@
   @extend .row;
   @extend .expanded;
 }
+
+.content{
+  @extend .columns;
+  @extend .large-9;
+
+  background: $main-background;
+}

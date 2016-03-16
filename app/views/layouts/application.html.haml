@@ -12,9 +12,9 @@
     .main-content
       -if is_logged_in?
         %section.main-menu
-          .menu-container
+          .main-menu_container
             =content_for?(:menu) ? yield(:menu) : nil
-        .columns.large-9
+        .content
           = yield
       -else
         =yield
