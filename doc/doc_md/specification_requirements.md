@@ -27,6 +27,9 @@ Behaviour
 * Remove Available date and time (this is not possible one day before availability is due)
 * list selected dates and times
 * list actual jobs (filter by date, time, assignment)
+* Job History
+* Worked hours
+* Dashboard with stats
 
 ## Employer
 
