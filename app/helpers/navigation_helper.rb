@@ -8,7 +8,7 @@ module NavigationHelper
         { title: 'Availability', action: 'availbabitity', url: availability_employees_path }
     ]
 
-    menu = capture_haml do
+    capture_haml do
       haml_tag :ul do
         case type
           when :employee
@@ -16,18 +16,33 @@ module NavigationHelper
         end
       end
     end
-    menu
   end
 
   def build_menu(site_map)
-    list = capture_haml do
+    capture_haml do
     site_map.each do |info|
         haml_tag :li do
-          haml_concat link_to_if(action_name != info[:action], info[:title], info[:url])
+          haml_concat link_to(info[:title], info[:url])
         end
       end
     end
-    list
+  end
+
+  def header_menu
+    menu_items = [
+        { title: 'Log Out', url: log_out_path },
+        { title: 'My Profile', url: info_employees_path }
+    ]
+
+    capture_haml do
+      haml_tag :ul do
+        menu_items.each do |info|
+          haml_tag :li do
+            haml_concat link_to info[:title], info[:url]
+          end
+        end
+      end
+    end
   end
 
 end
