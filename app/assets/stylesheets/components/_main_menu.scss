@@ -31,6 +31,8 @@ section {
   &.main-menu {
     @extend .columns;
     @extend .large-3;
+    @extend %no-padding;
+    
     background-color: #2b343f;
 
     display: none;
