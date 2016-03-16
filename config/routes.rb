@@ -2,9 +2,11 @@ Rails.application.routes.draw do
 
   root to: 'index#index', as: :home
 
-  resource :employees, path: :profile, path_names: { new: :create } do
+  resource :employees, path: :profile, path_names: { new: :create, profile: :info } do
     member do
       get 'dashboard'
+      get 'info'
+      get 'availability'
     end
   end
 
