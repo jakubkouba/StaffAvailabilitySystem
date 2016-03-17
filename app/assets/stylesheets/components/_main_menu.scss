@@ -46,7 +46,7 @@
 
         @include breakpoint(large){
           background: #2b343f;
-          @include animation(fadeInUp 300ms ease);
+          @include animation(showMainMenu 500ms ease);
           @include transform(none);
         }
 
