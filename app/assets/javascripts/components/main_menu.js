@@ -8,13 +8,13 @@ var mainMenu = function () {
         menu = $('.main-menu'),
         openMenuClass = 'open-menu',
 
-        showMenu = function () {
+        openMenu = function () {
             menu.toggleClass(openMenuClass);
         },
 
         bindEvents = function () {
             menuToggle.click(function () {
-                showMenu();
+                openMenu();
             })
         };
 

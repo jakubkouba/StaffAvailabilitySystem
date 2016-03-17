@@ -3,3 +3,17 @@
   -moz-border-radius: $value;
   border-radius: $value;
 }
+
+// calculate animations delays for nth-child selector
+@mixin get_delays($selector, $child-count, $delay, $type: animation){
+  @for $i from 1 through $child-count {
+    #{$selector}:nth-child(#{$i}){
+      @if $type == animation {
+        @include animation-delay($i * $delay);
+      }
+      @if $type == transition {
+        @include transition-delay($i * $delay);
+      }
+    }
+  }
+}
