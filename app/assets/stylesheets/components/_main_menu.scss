@@ -31,8 +31,8 @@
       li{
 
         @at-root{
-          @include get_delays(&, 3, 100ms, animation);
-          @include get_delays(&, 3, 100ms, transition);
+          @include get_delays(&, 6, 100ms, animation);
+          @include get_delays(&, 6, 100ms, transition);
         }
 
         @include animation-fill-mode(forwards);
