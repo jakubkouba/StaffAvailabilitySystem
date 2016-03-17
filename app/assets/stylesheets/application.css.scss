@@ -16,11 +16,15 @@
 @import "foundation/foundation_and_overrides";
 @import "bourbon";
 
+//libs
+@import "libs/animate";
+
 // Components
 @import "components/variables";
 @import "components/helpers";
 @import "components/mixins";
 @import "components/global";
+@import "components/animations";
 @import "components/layout";
 @import "components/header";
 @import "components/main_menu";
