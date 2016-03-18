@@ -2,25 +2,13 @@ require 'rails_helper'
 
 RSpec.describe AvailabilitiesController, type: :controller do
 
-  describe "GET #create" do
-    it "returns http success" do
-      get :create
-      expect(response).to have_http_status(:success)
-    end
-  end
+  describe "GET #show" do
 
-  describe "GET #edit" do
-    it "returns http success" do
-      get :edit
-      expect(response).to have_http_status(:success)
-    end
-  end
+    before { get :show }
 
-  describe "GET #update" do
-    it "returns http success" do
-      get :update
-      expect(response).to have_http_status(:success)
-    end
+    it { is_expected.to respond_with(200) }
+
+    it { is_expected.to render_template(:show) }
   end
 
 end
