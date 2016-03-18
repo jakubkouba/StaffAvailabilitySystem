@@ -18,5 +18,8 @@
 class Availability < ActiveRecord::Base
   belongs_to :employee
 
-  validates :day, presence: true
+  validates :day,
+            :time_from,
+            :time_to,
+            presence: true
 end

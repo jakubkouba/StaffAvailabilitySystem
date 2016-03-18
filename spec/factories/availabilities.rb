@@ -20,5 +20,13 @@ FactoryGirl.define do
     day "2016-03-17"
     time_from "2016-03-17 17:52:08"
     time_to "2016-03-17 17:52:08"
+
+    trait :invalid do
+      day "ivalid_day"
+      time_from "invalid_time"
+      time_to "invalid_time"
+    end
+
   end
+
 end
