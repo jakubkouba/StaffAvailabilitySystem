@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     member do
       get 'dashboard'
       get 'info'
-      get 'availability'
+      resource :availabilities, path: :availability, only: [:create, :show, :update]
     end
   end
 
