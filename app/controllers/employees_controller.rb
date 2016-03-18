@@ -56,10 +56,6 @@ class EmployeesController < ApplicationController
   def info
   end
 
-  def availability
-
-  end
-
   def shirt_sizes
     @shirt_sizes = INIT_VALS[:shirt_sizes]
   end
