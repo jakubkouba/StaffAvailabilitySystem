@@ -19,7 +19,8 @@ class EmployeesController < ApplicationController
 
   before_action :prepare_view, only: [:new, :create, :edit]
 
-  before_action :current_employee, :check_login, except: [:new, :create]
+  # before_action :current_employee, :check_login, except: [:new, :create]
+  ensure_employee_presence_and_auth except: [:new, :create]
 
   def new
     redirect_to dashboard_employees_path if is_logged_in?
@@ -53,6 +54,7 @@ class EmployeesController < ApplicationController
   def dashboard
   end
 
+  #TODO: info method replace with show above
   def info
   end
 
