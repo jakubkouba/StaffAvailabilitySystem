@@ -6,6 +6,7 @@ class AvailabilitiesController < ApplicationController
   end
 
   def show
+    @current_date = Date.today
   end
 
   def update
