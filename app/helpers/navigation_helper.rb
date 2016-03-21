@@ -5,7 +5,7 @@ module NavigationHelper
     employee_site_map = [
         { title: 'Dashboard', action: 'dashboard', url: dashboard_employees_path },
         { title: 'Edit Profile', action: 'edit', url: edit_employees_path },
-        { title: 'Availability', action: 'availbabitity', url: availability_employees_path }
+        { title: 'Availability', action: 'availbabitity', url: availabilities_path }
     ]
 
     capture_haml do
