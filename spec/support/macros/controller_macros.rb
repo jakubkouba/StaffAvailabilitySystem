@@ -44,7 +44,7 @@ module ControllerMacros
               get action, nil, { employee_id: @employee_id }
               expect(response).to render_template(action)
               expect(response).to render_template(layout: 'layouts/application')
-              expect(response.body).to have_selector('.main-menu_container.employee-menu')
+              expect(response.body).to have_selector('.employee-menu')
             end
 
             it "get current employee" do
