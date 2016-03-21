@@ -11,6 +11,14 @@ module ControllerMacros
   end
 
   module ClassMethods
+
+    def it_expect_assign_employee
+      it "assigns @employee" do
+
+      end
+    end
+
+
     def it_expects_authorization_for(*actions)
       describe "authorization" do
 
@@ -36,12 +44,12 @@ module ControllerMacros
               get action, nil, { employee_id: @employee_id }
               expect(response).to render_template(action)
               expect(response).to render_template(layout: 'layouts/application')
-              expect(response.body).to have_selector('.employee.main-menu')
+              expect(response.body).to have_selector('.main-menu_container')
             end
 
             it "get current employee" do
               get action, nil, { employee_id: @employee_id }
-              expect(assigns(:employee)).to be_a_kind_of(Employee)
+              expect(assigns(:employee)).to be_an_instance_of(Employee)
             end
           end
         end
