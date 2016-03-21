@@ -6,9 +6,8 @@ RSpec.describe AvailabilitiesController, type: :controller do
 
     before { get :show }
 
-    it { is_expected.to respond_with(200) }
+    it_expects_authorization_for(:show)
 
-    it { is_expected.to render_template(:show) }
   end
 
 end

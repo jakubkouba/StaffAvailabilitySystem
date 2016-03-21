@@ -1,2 +1,36 @@
-<h1>Availabilities#edit</h1>
-<p>Find me in app/views/availabilities/edit.html.erb</p>
+=render_menu
+
+-main_title 'Availability'
+
+-#%table.calendar
+-#  %thead
+-#    %tr
+-#      %th Day
+-#      %th Selected Time
+-#      %th Status
+-#  %tbody
+-#    -7.times do |i|
+-#      -date = @date + i
+-#      %tr.day
+-#        %th
+-#          =date.strftime("%A")
+-#          %br
+-#          =date.to_formatted_s :short
+-#        %th
+-#          21:00 - 00:00
+-#        %th
+-#          Booked
+-#      %tr.hours-from
+-#        %th From
+-#        %th{colspan: 2}
+-#          .row
+-#            .column.small-4.small-centered
+-#              %input#sliderOutput1{:type => "number"}
+-#          .row.column
+-#            .slider{"data-initial-start" => "50", "data-slider" => ""}
+-#            %span.slider-handle{"aria-controls" => "sliderOutput1", "data-slider-handle" => "", :role => "slider", :tabindex => "1"}
+-#            %span.slider-fill{"data-slider-fill" => ""}
+-#      %tr.hours-to
+-#        %th To
+-#        %th{colspan: 2}
+-#          slider
