@@ -19,7 +19,8 @@ var availability = function(){
                 hour: $timepicker.find('.selected-time span.hour'),
                 minute: $timepicker.find('.selected-time span.minute')
             },
-            hourButtons: $timepicker.find('.t-button.hour')
+            hourButtons: $timepicker.find('.t-button.hour'),
+            minuteButtons: $timepicker.find('.t-button.minute')
         },
 
         selectedTimeFromInput = {
@@ -27,7 +28,6 @@ var availability = function(){
             hour: null,
             minute: null
         },
-
 
         getInputTime = function (time) {
             time = time.split(':');
@@ -55,25 +55,25 @@ var availability = function(){
             timepicker.time.meridiem[selectedTimeFromInput.meridiem].addClass('active').siblings().removeClass('active');
         },
 
-        setHour = function ($el) {
-            $timepickerTime.text(
-                $el.text()
-            )
-        },
-
         bindEvents = function(){
 
             $selectTimeButtons.click(function () {
                 showTimepicker();
                 setTimeFromFromInput($(this))
-          });
+            });
 
             timepicker.close.click(function () {
                 closeTimepicker();
             });
 
             timepicker.hourButtons.click(function () {
-                setHour($(this));
+                var hour = $(this).children('input[name=hour]').val();
+                timepicker.time.hour.text(hour);
+            });
+
+            timepicker.minuteButtons.click(function(){
+                var minute = $(this).children('input[name=minute]').val();
+                timepicker.time.minute.text(minute);
             })
 
         };
