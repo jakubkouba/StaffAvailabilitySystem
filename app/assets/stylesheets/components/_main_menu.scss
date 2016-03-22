@@ -5,17 +5,20 @@
   @extend %no-padding;
 
   &_container{
+    visibility: hidden;
     opacity: 0;
     position: fixed;
     height: 100%;
     width: 100%;
 
-    @include transition(all 500ms ease);
+    @include transition(opacity 500ms ease 1s);
+    @include transition(visibility 200ms);
 
     .open-menu &{
       display: block;
       background: rgba(#2b343f, 0.95);
       opacity: 1;
+      visibility: visible;
     }
 
     @include breakpoint(large){
