@@ -58,5 +58,17 @@
   }
 }
 
+.availability-switch{
+  @extend .switch, .tiny;
+  margin: 25px 0 0 0;
+
+  .switch-paddle{
+    @include radius(3px);
+    &:after{
+      @include radius(3px);
+    }
+  }
+}
+
 
 

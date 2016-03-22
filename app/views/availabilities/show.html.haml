@@ -21,9 +21,14 @@
         %th
           21:00 - 00:00
         %th
-          Booked
+          free
       %tr.hours
-        %th{colspan: 3}
+        %th{colspan: 2}
           .select-time
             =render partial: 'availabilities/partials/select_time', locals: { prefix: :from }
             =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }
+        %th
+          .availability-switch
+            %input#avail-switch.switch-input{:name => "exampleSwitch", type: :checkbox}
+              %label.switch-paddle{for: 'avail-switch'}
+                %span.show-for-sr Download Kittens
