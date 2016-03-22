@@ -1,0 +1,21 @@
+.time-menu
+  .close Close
+  .time-menu__meridiem
+    %span.am.time-menu__button am
+    %span.pm.time-menu__button pm
+  .time-selection
+    .time-selection__hours
+      -hours_block = '';
+      -12.times do |hour|
+        -hour += 1
+        -hours_block += capture_haml do
+          .time-menu__button.time-menu__button-time.float-left= hour
+
+        -if hour % 4 == 0
+          .hours__block= hours_block.html_safe
+          -hours_block = ''
+    .time-selection__minutes
+      .title Minutes
+      -%w[00 15 30 45].each do |minute|
+        .time-menu__button.time-menu__button-time.minute.float-left= minute
+  %a.time-menu__button.done Done
