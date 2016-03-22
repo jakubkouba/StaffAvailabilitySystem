@@ -44,5 +44,8 @@ module StaffAvailabilitySystem
       %Q(<div class="field-error">#{html_tag}</div>).html_safe
     end
 
+    ## External assets modules
+    config.assets.paths << Rails.root.join('app', 'assets', 'bower_components')
+
   end
 end
