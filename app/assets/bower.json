@@ -17,6 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "clockpicker": "^0.0.7"
+    "clockpicker": "^0.0.7",
+    "foundation-icon-fonts": "*"
   }
 }
