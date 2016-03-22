@@ -51,8 +51,8 @@ var availability = function(){
             $timepicker.hide()
         },
 
-        setTimeFromFromInput = function ($el) {
-            getInputTime($el.siblings('input').val());
+        setTimeFromFromInput = function (time) {
+            getInputTime(time);
             timepicker.time.hour.text(selectedTimeFromInput.hour);
             timepicker.time.minute.text(selectedTimeFromInput.minute);
             timepicker.time.meridiem[selectedTimeFromInput.meridiem].addClass('active').siblings().removeClass('active');
@@ -69,8 +69,9 @@ var availability = function(){
 
             $selectTimeButtons.click(function () {
                 showTimepicker();
-                setTimeFromFromInput($(this));
-                $currentInput = $(this).siblings('input');
+                var $input = $(this).siblings('input');
+                setTimeFromFromInput($input.val());
+                $currentInput = $input;
             });
 
             timepicker.close.click(function () {
