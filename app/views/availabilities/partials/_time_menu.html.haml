@@ -12,7 +12,9 @@
         -12.times do |hour|
           -hour += 1
           -hours_block += capture_haml do
-            .t-button.hour= hour
+            .t-button.hour
+              =hidden_field_tag(:hour, hour, {id: "hour-#{hour}"})
+              =hour
 
           -if hour % 4 == 0
             .hours__block= hours_block.html_safe
@@ -20,5 +22,7 @@
 
       .time-select__minutes
         -%w[00 15 30 45].each do |minute|
-          .t-button.minute= minute
+          .t-button.minute
+            =hidden_field_tag(:minute, minute, {id: "minute-#{minute}"})
+            =minute
     %a.t-button.done Done
