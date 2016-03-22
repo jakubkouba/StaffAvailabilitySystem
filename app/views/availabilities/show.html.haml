@@ -2,35 +2,28 @@
 
 -main_title 'Availability'
 
--#%table.calendar
--#  %thead
--#    %tr
--#      %th Day
--#      %th Selected Time
--#      %th Status
--#  %tbody
--#    -7.times do |i|
--#      -date = @date + i
--#      %tr.day
--#        %th
--#          =date.strftime("%A")
--#          %br
--#          =date.to_formatted_s :short
--#        %th
--#          21:00 - 00:00
--#        %th
--#          Booked
--#      %tr.hours-from
--#        %th From
--#        %th{colspan: 2}
--#          .row
--#            .column.small-4.small-centered
--#              %input#sliderOutput1{:type => "number"}
--#          .row.column
--#            .slider{"data-initial-start" => "50", "data-slider" => ""}
--#            %span.slider-handle{"aria-controls" => "sliderOutput1", "data-slider-handle" => "", :role => "slider", :tabindex => "1"}
--#            %span.slider-fill{"data-slider-fill" => ""}
--#      %tr.hours-to
--#        %th To
--#        %th{colspan: 2}
--#          slider
+=render 'availabilities/partials/time_menu'
+
+%table.availability-calendar
+  %thead
+    %tr
+      %th Day
+      %th Selected Time
+      %th Status
+  %tbody
+    -7.times do |i|
+      -date = @current_date + i
+      %tr.day
+        %th
+          =date.strftime("%a")
+          %br
+          =date.to_formatted_s :short
+        %th
+          21:00 - 00:00
+        %th
+          Booked
+      %tr.hours
+        %th{colspan: 3}
+          .select-time
+            =render partial: 'availabilities/partials/select_time', locals: { prefix: :from }
+            =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }

@@ -14,6 +14,7 @@
 // require jquery_ujs
 //= require foundation
 //= require './components/main_menu.js'
+//= require 'employee/availability.js'
 // require turbolinks
 
 
@@ -27,4 +28,7 @@ $(function(){
 
     // Menu
     mainMenu().init();
+
+    // Availability
+    availability().init();
 });

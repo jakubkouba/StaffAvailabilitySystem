@@ -35,6 +35,8 @@
 // Employee
 @import "employee/create_porofile_form";
 @import "employee/header";
+@import "employee/availability/_calendar";
+@import "employee/availability/time_menu";
 
 // Sessions
 @import "sessions/new"; // login form

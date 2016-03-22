@@ -1,0 +1,35 @@
+.availability-calendar{
+  font-size: 15px;
+
+  th{
+    font-weight: 300;
+    padding: 0;
+  }
+}
+
+.select-time{
+  @extend .row;
+
+  &__from, &__to{
+    @extend .columns;
+    @extend .small-6, .large-6;
+    padding: 2px;
+  }
+
+  &__actions{
+
+    .select-time-button, .reset-time-button{
+      @extend .button;
+      padding: 5px;
+    }
+
+    .select{
+      float: left;
+    }
+
+    .reset{
+      float: right;
+    }
+
+  }
+}
