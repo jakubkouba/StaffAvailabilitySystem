@@ -1,21 +1,24 @@
-.time-menu
-  .close Close
-  .time-menu__meridiem
-    %span.am.time-menu__button am
-    %span.pm.time-menu__button pm
-  .time-selection
-    .time-selection__hours
-      -hours_block = '';
-      -12.times do |hour|
-        -hour += 1
-        -hours_block += capture_haml do
-          .time-menu__button.time-menu__button-time.float-left= hour
+.timepicker
+  .close
+    %i.fi-x
+  .time-selection-wrap
+    .selected-time 00:00
+    .meridiem
+      %span.am.t-button am
+      %span.pm.t-button pm
+    .time-select
+      .time-select__hours
+        -hours_block = '';
+        -12.times do |hour|
+          -hour += 1
+          -hours_block += capture_haml do
+            .t-button.hour= hour
 
-        -if hour % 4 == 0
-          .hours__block= hours_block.html_safe
-          -hours_block = ''
-    .time-selection__minutes
-      .title Minutes
-      -%w[00 15 30 45].each do |minute|
-        .time-menu__button.time-menu__button-time.minute.float-left= minute
-  %a.time-menu__button.done Done
+          -if hour % 4 == 0
+            .hours__block= hours_block.html_safe
+            -hours_block = ''
+
+      .time-select__minutes
+        -%w[00 15 30 45].each do |minute|
+          .t-button.minute= minute
+    %a.t-button.done Done

@@ -1,55 +1,87 @@
-.time-menu{
+.timepicker{
 
   position: fixed;
-  opacity: 0;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba($time-menu-background, 0.95);
-  display: none;
+  z-index: 99999;
+
+  .close{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+
+  .fi-x{
+    color: #00ffee;
+  }
 
   &__meridiem{
     text-align: center;
     margin-bottom: 10px;
-
-    span{
-      padding: 5px 15px;
-    }
-  }
-
-  &__button{
-    @include radius();
-    border: 1px solid red;
-    color: red;
-
-    &-time{
-      @include square_dim(45px);
-      text-align: center;
-      margin-right: 10px;
-      padding-top: 3%;
-    }
   }
 }
 
-
-
-
-.time-button{
-
-}
-
-.time-selection{
+.time-selection-wrap{
+  width: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
   text-align: center;
 
-  &__hours, &__minutes{
-    @include clearfix;
-    margin: 0 auto;
-    width: 75%;
+  .selected-time{
+    font-size: 40px;
+    color: $light-gray;
+  }
+
+  .done{
+    padding: 5px 10px;
   }
 }
 
-.hours__block, .minutes{
-  @include clearfix;
+.meridiem{
+
+  padding: 10px;
   margin-bottom: 10px;
+
+  span{
+    padding: 5px 15px;
+  }
+}
+
+.t-button{
+  @include radius();
+  border: 1px solid red;
+  color: red;
+
+  &.hour, &.minute{
+    display: inline-block;
+    @include square_dim(45px);
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 3%;
+  }
+
+  &.hour:last-child{
+    margin-right: 0;
+  }
+
+  &.minute:last-child{
+    margin-right: 0;
+  }
+}
+
+.hours__block{
+  margin-bottom: 10px;
+
+}
+
+.time-select{
+  margin-bottom: 20px;
+
+  &__hours{
+    margin-bottom: 20px;
+  }
 }
