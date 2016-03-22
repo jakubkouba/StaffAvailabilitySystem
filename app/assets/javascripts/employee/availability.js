@@ -10,9 +10,26 @@ var availability = function(){
 
         $timepicker = $('.timepicker'),
         $timepickerClose = $timepicker.children('.close'),
-
         $timepickerTime = $timepicker.find('.selected-time'),
+        $hourButtons = $timepicker.find('.t-button.hour'),
 
+        selectedTimeFromInput = {
+            meridiem: 'am',
+            hour: null,
+            minute: null
+        },
+
+
+        getInputTime = function (time) {
+            time = time.split(':');
+            var
+                hour = time[0],
+                minute = time[1];
+
+            selectedTimeFromInput.hour = hour;
+            selectedTimeFromInput.minute = minute;
+            selectedTimeFromInput.meridiem = (hour > 12)? 'pm' : 'am';
+        },
 
         showTimepicker = function () {
             $timepicker.show();
@@ -23,9 +40,14 @@ var availability = function(){
         },
 
         setTimeFromFromInput = function ($el) {
+            getInputTime($el.siblings('input').val());
+            $timepickerTime.children('span.hour').text(selectedTimeFromInput.hour);
+        },
+
+        setHour = function ($el) {
             $timepickerTime.text(
-                $el.siblings('input').val()
-            );
+                $el.text()
+            )
         },
 
         bindEvents = function(){
@@ -38,6 +60,10 @@ var availability = function(){
             $timepickerClose.click(function () {
                 closeTimepicker();
             });
+
+            $hourButtons.click(function () {
+                setHour($(this));
+            })
 
         };
 
