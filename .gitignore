@@ -19,3 +19,7 @@ doc/html
 config/database.yml
 
 .idea/*
+
+# frontend tools and modules
+app/assets/bower_components
+app/assets/node_modules
