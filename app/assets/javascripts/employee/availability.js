@@ -6,23 +6,44 @@
 var availability = function(){
 
     var
-        $selectTimeButtons = $('.availability-calendar .select-time-button'),
-        $timeMenu = $('.time-menu'),
+        $selectTimeButtons = $('.time-picker__input-label'),
 
-        showTimeMenu = function(){
-            $timeMenu.addClass('bounceIn');
+        $timepicker = $('.timepicker'),
+        $timepickerClose = $timepicker.children('.close'),
+
+        $timepickerTime = $timepicker.find('.selected-time'),
+
+
+        showTimepicker = function () {
+            $timepicker.show();
+        },
+
+        closeTimepicker = function () {
+            $timepicker.hide()
+        },
+
+        setTimeFromFromInput = function ($el) {
+            $timepickerTime.text(
+                $el.siblings('input').val()
+            );
         },
 
         bindEvents = function(){
-          $selectTimeButtons.click(function(){
-              showTimeMenu();
+
+            $selectTimeButtons.click(function () {
+                showTimepicker();
+                setTimeFromFromInput($(this))
           });
+
+            $timepickerClose.click(function () {
+                closeTimepicker();
+            });
+
         };
 
     return {
         init: function(){
             bindEvents();
-            console.log($selectTimeButtons)
         }
     }
 
