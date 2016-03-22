@@ -20,7 +20,8 @@ var availability = function(){
                 minute: $timepicker.find('.selected-time span.minute')
             },
             hourButtons: $timepicker.find('.t-button.hour'),
-            minuteButtons: $timepicker.find('.t-button.minute')
+            minuteButtons: $timepicker.find('.t-button.minute'),
+            done: $timepicker.find('.done')
         },
 
         selectedTimeFromInput = {
@@ -28,6 +29,8 @@ var availability = function(){
             hour: null,
             minute: null
         },
+
+        $currentInput = null,
 
         getInputTime = function (time) {
             time = time.split(':');
@@ -55,15 +58,24 @@ var availability = function(){
             timepicker.time.meridiem[selectedTimeFromInput.meridiem].addClass('active').siblings().removeClass('active');
         },
 
+        setTimeFromTimepicker = function () {
+            if ($currentInput != null) {
+                var time = timepicker.time.hour.text() + ':' + timepicker.time.minute.text();
+                $currentInput.val(time);
+            }
+        },
+
         bindEvents = function(){
 
             $selectTimeButtons.click(function () {
                 showTimepicker();
-                setTimeFromFromInput($(this))
+                setTimeFromFromInput($(this));
+                $currentInput = $(this).siblings('input');
             });
 
             timepicker.close.click(function () {
                 closeTimepicker();
+                setTimeFromTimepicker();
             });
 
             timepicker.hourButtons.click(function () {
@@ -74,7 +86,14 @@ var availability = function(){
             timepicker.minuteButtons.click(function(){
                 var minute = $(this).children('input[name=minute]').val();
                 timepicker.time.minute.text(minute);
-            })
+            });
+
+            timepicker.done.click(function (e) {
+                e.preventDefault();
+                console.log('done clicked');
+                setTimeFromTimepicker();
+                closeTimepicker();
+            });
 
         };
 
