@@ -1,0 +1,14 @@
+{
+  "name": "staff_availability_system",
+  "version": "1.0.0",
+  "description": "Frontend build for SAS app",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jakub Adler",
+  "license": "ISC",
+  "dependencies":{
+    "bower": "~1.7.7"
+  }
+}

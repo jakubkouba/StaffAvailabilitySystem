@@ -1,0 +1,22 @@
+{
+  "name": "staff_availability_system",
+  "version": "0.1.0",
+  "authors": [
+    "Jakub Adler <adler.jakub@gmial.com>"
+  ],
+  "description": "Frontend build for SAS app",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "clockpicker": "^0.0.7"
+  }
+}
