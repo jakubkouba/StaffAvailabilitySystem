@@ -7,11 +7,20 @@ var availability = function(){
 
     var
         $selectTimeButtons = $('.time-picker__input-label'),
-
         $timepicker = $('.timepicker'),
-        $timepickerClose = $timepicker.children('.close'),
-        $timepickerTime = $timepicker.find('.selected-time'),
-        $hourButtons = $timepicker.find('.t-button.hour'),
+        timepicker = {
+            self: $timepicker,
+            close: $timepicker.children('.close'),
+            time: {
+                meridiem: {
+                    am: $timepicker.find('.meridiem span.am'),
+                    pm: $timepicker.find('.meridiem span.pm')
+                },
+                hour: $timepicker.find('.selected-time span.hour'),
+                minute: $timepicker.find('.selected-time span.minute')
+            },
+            hourButtons: $timepicker.find('.t-button.hour')
+        },
 
         selectedTimeFromInput = {
             meridiem: 'am',
@@ -41,7 +50,9 @@ var availability = function(){
 
         setTimeFromFromInput = function ($el) {
             getInputTime($el.siblings('input').val());
-            $timepickerTime.children('span.hour').text(selectedTimeFromInput.hour);
+            timepicker.time.hour.text(selectedTimeFromInput.hour);
+            timepicker.time.minute.text(selectedTimeFromInput.minute);
+            timepicker.time.meridiem[selectedTimeFromInput.meridiem].addClass('active').siblings().removeClass('active');
         },
 
         setHour = function ($el) {
@@ -57,11 +68,11 @@ var availability = function(){
                 setTimeFromFromInput($(this))
           });
 
-            $timepickerClose.click(function () {
+            timepicker.close.click(function () {
                 closeTimepicker();
             });
 
-            $hourButtons.click(function () {
+            timepicker.hourButtons.click(function () {
                 setHour($(this));
             })
 
