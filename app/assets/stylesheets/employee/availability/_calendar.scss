@@ -12,8 +12,13 @@
 
   &__from, &__to{
     @extend .columns;
-    @extend .small-6, .large-6;
+    @extend .small-5, .large-5;
     padding: 2px;
+  }
+
+  &__to{
+    @extend .end;
+    margin-left: 20px;
   }
 
   &__actions{
