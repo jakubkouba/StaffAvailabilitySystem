@@ -36,6 +36,35 @@ var availability = function(){
 
         $currentInput = null,
 
+        $availabilitySwitch = $('.availability-switch .switcher'),
+        //$availabilitySwitch = {
+        //    self: _$availabilitySwitch,
+        //    inputFrom: _$availabilitySwitch.siblings('.select-time__from').find('input.time-picker__selected-time'),
+        //    inputTo: _$availabilitySwitch.siblings('.select-time__to').find('input.time-picker__selected-time')
+        //},
+
+        getTimeInputsBySwitcher = function($switcher){
+            var
+                $inputFrom = $switcher.parent('.availability-switch')
+                    .siblings('.select-time__from')
+                    .find('input.time-picker__selected-time'),
+                $inputTo = $switcher.parent('.availability-switch')
+                    .siblings('.select-time__to')
+                    .find('input.time-picker__selected-time');
+
+            return [$inputFrom, $inputTo];
+        },
+
+        toggleTimeInput = function ($switcher) {
+            var inputs = getTimeInputsBySwitcher($switcher);
+            $.each(inputs, function(index, $input){
+                ($input.attr("disabled"))
+                    ? $input.removeAttr("disabled")
+                    : $input.attr("disabled", "disabled");
+
+            });
+        },
+
         getInputTime = function (time) {
             time = time.split(':');
             var
@@ -145,6 +174,11 @@ var availability = function(){
                 simulateClick($(this));
                 setTimeFromTimepicker();
                 closeTimepicker();
+            });
+
+            $availabilitySwitch.on('click', function(e){
+                toggleTimeInput($(this));
+                //e.preventDefault();
             });
 
         };

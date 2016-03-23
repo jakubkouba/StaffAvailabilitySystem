@@ -26,6 +26,6 @@
         =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }
 
         .availability-switch
-          %input#avail-switch.switch-input{:name => "exampleSwitch", type: :checkbox}
-            %label.switch-paddle{for: 'avail-switch'}
-              %span.show-for-sr Download Kittens
+          -id = "avail-switch-#{date.strftime("%y-%m-%d")}"
+          %input.switch-input{id: id, :name => id, type: :checkbox}
+            %label.switch-paddle.switcher{for: id}
