@@ -1,23 +1,49 @@
 .availability-calendar{
   font-size: 15px;
 
-  th{
-    font-weight: 300;
-    padding: 0;
+  .header{
+    @extend .row, .small-collapse;
+    text-align: center;
+  }
+
+  .body{
+    .day{
+      @extend .row, .small-collapse;
+      text-align: center;
+
+      &__select-time{
+
+      }
+    }
   }
 }
 
+.day-col{
+  @extend .columns, .small-3;
+}
+
+.time-col{
+  @extend .columns, .small-7;
+}
+
+.stat-col{
+  @extend .columns, .small-2;
+}
+
+
+
 .select-time{
   @extend .row;
+  text-align: center;
+  padding-bottom: 10px;
 
   &__from, &__to{
-    @extend .columns;
-    @extend .small-5, .large-5;
+    @extend .columns, .small-4, .large-4;
+
     padding: 2px;
   }
 
   &__to{
-    @extend .end;
     margin-left: 20px;
   }
 
@@ -64,7 +90,7 @@
 }
 
 .availability-switch{
-  @extend .switch, .tiny;
+  @extend .columns, .small-3, .switch, .tiny;
   margin: 25px 0 0 0;
 
   .switch-paddle{

@@ -4,31 +4,28 @@
 
 =render 'availabilities/partials/time_menu'
 
-%table.availability-calendar
-  %thead
-    %tr
-      %th Day
-      %th Selected Time
-      %th Status
-  %tbody
+.availability-calendar
+  .header
+    .header__day.day-col Day
+    .header__time.time-col Selected Time
+    .header__stat.stat-col
+      %i.fi-checkbox
+
+  .body
     -7.times do |i|
       -date = @current_date + i
-      %tr.day
-        %th
+      .day
+        .day_date.day-col
           =date.strftime("%a")
           %br
-          =date.to_formatted_s :short
-        %th
-          21:00 - 00:00
-        %th
-          free
-      %tr.hours
-        %th{colspan: 2}
-          .select-time
-            =render partial: 'availabilities/partials/select_time', locals: { prefix: :from }
-            =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }
-        %th
-          .availability-switch
-            %input#avail-switch.switch-input{:name => "exampleSwitch", type: :checkbox}
-              %label.switch-paddle{for: 'avail-switch'}
-                %span.show-for-sr Download Kittens
+          =date.to_formatted_s(:short)
+        .day__time.time-col 21:00 - 00:00
+        .day__stat.stat-col icon
+      .select-time
+        =render partial: 'availabilities/partials/select_time', locals: { prefix: :from }
+        =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }
+
+        .availability-switch
+          %input#avail-switch.switch-input{:name => "exampleSwitch", type: :checkbox}
+            %label.switch-paddle{for: 'avail-switch'}
+              %span.show-for-sr Download Kittens
