@@ -142,10 +142,9 @@ var availability = function(){
 
             timepicker.done.click(function (e) {
                 e.preventDefault();
-                console.log('done clicked');
+                simulateClick($(this));
                 setTimeFromTimepicker();
                 closeTimepicker();
-                simulateClick($(this));
             });
 
         };
