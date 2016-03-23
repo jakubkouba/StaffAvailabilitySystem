@@ -1,3 +1,18 @@
+$time-menu-background: #2D333C;
+$button-color: #80D7FB;
+
+@include keyframes(t-button){
+  from{
+    background: $time-menu-background;
+    color: $button-color;
+  }
+  to{
+    background: $button-color;
+    color: $time-menu-background;
+  }
+}
+
+
 .timepicker{
 
   position: fixed;
@@ -20,7 +35,7 @@
     position: absolute;
     top: 10px;
     left: 10px;
-    color: #CBDAE0;
+    color: $button-color;
     font-size: 25px;
     font-weight: normal;
   }
@@ -64,12 +79,18 @@
 
 .t-button{
   @include radius();
-  border: 1px solid red;
-  color: red;
+  border: 1px solid $button-color;
+  color: $button-color;
+
+  @include transition(all 300ms ease);
 
   &.active{
-    background: red;
+    background: #80D7FB;
     color: $time-menu-background;
+  }
+
+  &.click{
+    @include animation(t-button 100ms linear)
   }
 
   &.hour, &.minute{

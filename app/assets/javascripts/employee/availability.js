@@ -87,6 +87,33 @@ var availability = function(){
             }
         },
 
+        /*
+            Simulates button click by adding and subsequently removing .click class
+            on $el element
+         */
+        simulateClick = function($el){
+            var $button = $el.addClass('click');
+            setTimeout(function(){
+                $button.removeClass('click');
+            }, 200)
+        },
+
+        /*
+         Execute click event on time or minute button
+         based on type
+
+         @param $el clicked button jQ object
+         @param type "minute" || "hour"
+         */
+        clickTimeButton = function($el, type){
+            // set chosen value
+            var value = $el.children('input[name=' + type + ']').val();
+            timepicker.time[type].text(value);
+
+            // simulate click
+            simulateClick($el);
+        },
+
         bindEvents = function(){
 
             $selectTimeButtons.click(function () {
@@ -102,13 +129,11 @@ var availability = function(){
             });
 
             timepicker.hourButtons.click(function () {
-                var hour = $(this).children('input[name=hour]').val();
-                timepicker.time.hour.text(hour);
+                clickTimeButton($(this), 'hour');
             });
 
             timepicker.minuteButtons.click(function(){
-                var minute = $(this).children('input[name=minute]').val();
-                timepicker.time.minute.text(minute);
+                clickTimeButton($(this), 'minute');
             });
 
             timepicker.time.meridiem.buttons.click(function () {
@@ -120,6 +145,7 @@ var availability = function(){
                 console.log('done clicked');
                 setTimeFromTimepicker();
                 closeTimepicker();
+                simulateClick($(this));
             });
 
         };
