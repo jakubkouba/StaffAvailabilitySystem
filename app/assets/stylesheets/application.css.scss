@@ -13,12 +13,14 @@
  *= require_self
  */
 
+$GlyphiconsPath: 'sass-bootstrap-glyphicons/fonts'; // override font path for bootstrap icons
 @import "foundation/foundation_and_overrides";
 @import "bourbon";
 
 //libs
 @import "animate.css/animate";
 @import "foundation-icon-fonts/foundation-icons.css";
+@import "sass-bootstrap-glyphicons/scss/bootstrap-glyphicons";
 
 // Components
 @import "components/variables";
