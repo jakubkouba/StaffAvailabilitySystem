@@ -9,7 +9,7 @@ var availability = function(){
         $selectTimeButtons = $('.time-picker__input-label'),
         $timepicker = $('.timepicker'),
         timepicker = {
-            self: $timepicker,
+            $: $timepicker,
             close: $timepicker.children('.close'),
             time: {
                 meridiem: {
@@ -54,11 +54,11 @@ var availability = function(){
         },
 
         showTimepicker = function () {
-            $timepicker.show();
+            timepicker.$.addClass('open');
         },
 
         closeTimepicker = function () {
-            $timepicker.hide()
+            timepicker.$.removeClass('open');
         },
 
         setMeridiem = function (value) {
