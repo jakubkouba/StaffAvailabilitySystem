@@ -16,7 +16,7 @@
           -hour += 1
           -hours_block += capture_haml do
             .t-button.hour
-              =hidden_field_tag(:hour, hour, {id: "hour-#{hour}"})
+              =hidden_field_tag(:hour, hour < 10 ? "0#{hour}" : hour, {id: "hour-#{hour}"})
               =hour
 
           -if hour % 4 == 0
