@@ -14,7 +14,7 @@
         %section.main-menu
           .main-menu_container
             =content_for?(:menu) ? yield(:menu) : nil
-        .content
+        .view-content
           = yield
       -else
         =yield
