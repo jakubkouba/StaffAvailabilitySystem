@@ -13,6 +13,7 @@ var availability = function(){
             close: $timepicker.children('.close'),
             time: {
                 meridiem: {
+                    buttons: $timepicker.find('.meridiem span'),
                     am: $timepicker.find('.meridiem span.am'),
                     pm: $timepicker.find('.meridiem span.pm')
                 },
@@ -24,10 +25,13 @@ var availability = function(){
             done: $timepicker.find('.done')
         },
 
-        selectedTimeFromInput = {
+        currentTime = {
             meridiem: 'am',
             hour: null,
-            minute: null
+            minute: null,
+            toString: function(){
+                return this.hour + ':' + this.minute
+            }
         },
 
         $currentInput = null,
@@ -38,9 +42,15 @@ var availability = function(){
                 hour = time[0],
                 minute = time[1];
 
-            selectedTimeFromInput.hour = hour;
-            selectedTimeFromInput.minute = minute;
-            selectedTimeFromInput.meridiem = (hour > 12)? 'pm' : 'am';
+            if (hour > 12) {
+                currentTime.meridiem = 'pm';
+                currentTime.hour = hour - 12;
+            }
+            else {
+                currentTime.meridiem = 'am';
+                currentTime.hour = hour;
+            }
+            currentTime.minute = minute;
         },
 
         showTimepicker = function () {
@@ -51,17 +61,29 @@ var availability = function(){
             $timepicker.hide()
         },
 
+        setMeridiem = function (value) {
+            var labels = ['am', 'pm'];
+            if (labels.indexOf(value) != -1) {
+                timepicker.time.meridiem[value].addClass('active').siblings().removeClass('active');
+                currentTime.meridiem = value;
+            }
+        },
+
         setTimeFromFromInput = function (time) {
             getInputTime(time);
-            timepicker.time.hour.text(selectedTimeFromInput.hour);
-            timepicker.time.minute.text(selectedTimeFromInput.minute);
-            timepicker.time.meridiem[selectedTimeFromInput.meridiem].addClass('active').siblings().removeClass('active');
+            timepicker.time.hour.text(currentTime.hour);
+            timepicker.time.minute.text(currentTime.minute);
+            setMeridiem(currentTime.meridiem);
         },
 
         setTimeFromTimepicker = function () {
+            currentTime.hour = (currentTime.meridiem == "pm")
+                ? parseInt(timepicker.time.hour.text()) + 12
+                : timepicker.time.hour.text();
+
+            currentTime.minute = timepicker.time.minute.text();
             if ($currentInput != null) {
-                var time = timepicker.time.hour.text() + ':' + timepicker.time.minute.text();
-                $currentInput.val(time);
+                $currentInput.val(currentTime.toString());
             }
         },
 
@@ -87,6 +109,10 @@ var availability = function(){
             timepicker.minuteButtons.click(function(){
                 var minute = $(this).children('input[name=minute]').val();
                 timepicker.time.minute.text(minute);
+            });
+
+            timepicker.time.meridiem.buttons.click(function () {
+                setMeridiem($(this).data().label);
             });
 
             timepicker.done.click(function (e) {

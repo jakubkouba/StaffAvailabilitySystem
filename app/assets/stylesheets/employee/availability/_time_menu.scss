@@ -57,6 +57,11 @@
   border: 1px solid red;
   color: red;
 
+  &.active{
+    background: red;
+    color: $time-menu-background;
+  }
+
   &.hour, &.minute{
     display: inline-block;
     @include square_dim(45px);

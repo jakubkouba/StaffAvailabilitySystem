@@ -7,8 +7,8 @@
       %span.separator :
       %span.minute 00
     .meridiem
-      %span.am.t-button am
-      %span.pm.t-button pm
+      %span.am.t-button{data: {label: :am}} am
+      %span.pm.t-button{data: {label: :pm}} pm
     .time-select
       .time-select__hours
         -hours_block = '';
