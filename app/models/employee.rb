@@ -19,6 +19,7 @@ class Employee < ActiveRecord::Base
 
   has_and_belongs_to_many :staff_types, join_table: 'positions'
   has_and_belongs_to_many :access_levels, join_table: 'authorizations'
+  has_many :availabilities
 
   enum :shirt_size => INIT_VALS[:shirt_sizes]
 
