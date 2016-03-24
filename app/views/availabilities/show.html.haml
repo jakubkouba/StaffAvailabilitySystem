@@ -14,6 +14,7 @@
   .body
     -7.times do |i|
       -date = @current_date + i
+      -date_db = date.to_formatted_s(:date)
       .day
         .day_date.day-col
           =date.strftime("%a")
@@ -26,8 +27,15 @@
         =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }
 
         .availability-switch
-          -id = "avail-switch-#{date.strftime("%y-%m-%d")}"
-          %input.switch-input{id: id, :name => id, type: :checkbox}
-            %label.switch-paddle.switcher{for: id, data: {enabled: true.to_s}}
+          -id = "avail-switch-#{date_db}"
+          =hidden_field_tag(:available_date,
+            date_db,
+            id: "available-date-#{date_db}",
+            name: 'available_dates[]',
+            class: 'available-date',
+            disabled: 'disabled')
+
+          %input.switch-input{id: id, :name => id, type: :checkbox }
+            %label.switch-paddle.switcher{for: id, data: {enabled: false.to_s}}
               %span.switch-active{"aria-hidden" => "true"} Yes
               %span.switch-inactive{"aria-hidden" => "true"} No
