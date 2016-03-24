@@ -66,10 +66,7 @@ var availability = function(){
         toggleTimeInput = function ($switcher) {
             var inputs = getTimeInputsBySwitcher($switcher);
             $.each(inputs, function(index, $input){
-                ($input.attr("disabled"))
-                    ? $input.removeAttr("disabled")
-                    : $input.attr("disabled", "disabled");
-
+                $input.toggleAttribute("disabled");
             });
         },
 
@@ -186,7 +183,7 @@ var availability = function(){
 
             $availabilitySwitchers.click( function(e){
                 toggleTimeInput($(this));
-                //toggleAvailabilityCheckbox($(this));
+                toggleAvailabilityCheckbox($(this));
             });
 
         };

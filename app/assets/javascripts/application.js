@@ -12,6 +12,7 @@
 //
 //= require jquery
 // require jquery_ujs
+//= require 'custom_jQuery_plugins/toggle_attribute.js'
 //= require foundation
 //= require './components/main_menu.js'
 //= require 'employee/availability.js'
