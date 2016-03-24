@@ -4,39 +4,36 @@
 
 =render 'availabilities/partials/time_menu'
 
-.availability-calendar
-  .header
-    .header__day.day-col Day
-    .header__time.time-col Selected Time
-    .header__stat.stat-col
-      %i.fi-checkbox
+=form_tag({controller: :availabilities, action: :update}, method: :patch) do
+  .availability-calendar
+    .header
+      .header__day.day-col Day
+      .header__time.time-col Selected Time
+      .header__stat.stat-col
+        %i.fi-checkbox
 
-  .body
-    -7.times do |i|
-      -date = @current_date + i
-      -date_db = date.to_formatted_s(:date)
-      .day
-        .day_date.day-col
-          =date.strftime("%a")
-          %br
-          =date.to_formatted_s(:short)
-        .day__time.time-col 21:00 - 00:00
-        .day__stat.stat-col icon
-      .select-time
-        =render partial: 'availabilities/partials/select_time', locals: { prefix: :from }
-        =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }
+    .body
+      -7.times do |i|
+        -date = @current_date + i
+        -date_db = date.to_formatted_s(:date)
+        .day
+          .day_date.day-col
+            =date.strftime("%a")
+            %br
+            =date.to_formatted_s(:short)
+          .day__time.time-col 21:00 - 00:00
+          .day__stat.stat-col icon
+        .select-time
+          =render partial: 'availabilities/partials/select_time', locals: { prefix: :from, selected: false, date: date_db }
+          =render partial: 'availabilities/partials/select_time', locals: { prefix: :to, selected: false, date: date_db}
 
-        .availability-switch
-          -switch_id = "avail-switch-#{date_db}"
-          =hidden_field_tag(:available_date,
-            date_db,
-            id: "available-date-#{date_db}",
-            name: 'available_dates[]',
-            class: 'available-date',
-            disabled: 'disabled')
+          .availability-switch
+            -switch_id = "avail-switch-#{date_db}"
 
-          =check_box_tag(switch_id, date_db, false, class: "switch-input")
+            =check_box_tag('available_dates[]', date_db, false, id: switch_id, class: "switch-input")
 
-          %label.switch-paddle.switcher{for: switch_id, data: {enabled: false.to_s}}
-            %span.switch-active{"aria-hidden" => "true"} Yes
-            %span.switch-inactive{"aria-hidden" => "true"} No
+            %label.switch-paddle.switcher{for: switch_id}
+              %span.switch-active{"aria-hidden" => "true"} Yes
+              %span.switch-inactive{"aria-hidden" => "true"} No
+
+  =submit_tag('Set Availablility', class: :button)

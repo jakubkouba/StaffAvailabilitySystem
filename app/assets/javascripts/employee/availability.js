@@ -38,12 +38,6 @@ var availability = function(){
 
         $availabilitySwitchers = $('.availability-switch .switcher'),
 
-        enableSwitchers = function(){
-          $availabilitySwitchers.filter(function(index){
-              return $(this).data().enabled == true
-          }).trigger("click");
-        },
-
         getTimeInputsBySwitcher = function($switcher){
             var
                 $inputFrom = $switcher.parent('.availability-switch')
@@ -176,14 +170,12 @@ var availability = function(){
 
             $availabilitySwitchers.click( function(){
                 toggleTimeInput($(this));
-                $(this).siblings('input.available-date').toggleAttribute("disabled");
             });
 
         };
 
     return {
         init: function(){
-            enableSwitchers();
             bindEvents();
         }
     }

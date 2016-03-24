@@ -1,6 +1,11 @@
 %div{class: "select-time__#{prefix}"}
   .title= prefix.to_s.capitalize
   .time-picker
-    %input.time-picker__selected-time{ type: 'text', value: '09:00', disabled: :disabled}
-      %span.time-picker__input-label
-        %span.fi-clock
+    =text_field_tag(:time,
+      '00:00',
+      disabled: !selected,
+      name: "available-times[#{date}[#{prefix}]]",
+      class: 'time-picker__selected-time')
+
+    %span.time-picker__input-label
+      %span.fi-clock
