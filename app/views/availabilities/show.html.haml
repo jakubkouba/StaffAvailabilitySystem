@@ -28,4 +28,6 @@
         .availability-switch
           -id = "avail-switch-#{date.strftime("%y-%m-%d")}"
           %input.switch-input{id: id, :name => id, type: :checkbox}
-            %label.switch-paddle.switcher{for: id}
+            %label.switch-paddle.switcher{for: id, data: {enabled: true.to_s}}
+              %span.switch-active{"aria-hidden" => "true"} Yes
+              %span.switch-inactive{"aria-hidden" => "true"} No
