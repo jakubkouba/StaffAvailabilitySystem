@@ -27,7 +27,7 @@
         =render partial: 'availabilities/partials/select_time', locals: { prefix: :to }
 
         .availability-switch
-          -id = "avail-switch-#{date_db}"
+          -switch_id = "avail-switch-#{date_db}"
           =hidden_field_tag(:available_date,
             date_db,
             id: "available-date-#{date_db}",
@@ -35,7 +35,8 @@
             class: 'available-date',
             disabled: 'disabled')
 
-          %input.switch-input{id: id, :name => id, type: :checkbox }
-            %label.switch-paddle.switcher{for: id, data: {enabled: false.to_s}}
-              %span.switch-active{"aria-hidden" => "true"} Yes
-              %span.switch-inactive{"aria-hidden" => "true"} No
+          =check_box_tag(switch_id, date_db, false, class: "switch-input")
+
+          %label.switch-paddle.switcher{for: switch_id, data: {enabled: false.to_s}}
+            %span.switch-active{"aria-hidden" => "true"} Yes
+            %span.switch-inactive{"aria-hidden" => "true"} No

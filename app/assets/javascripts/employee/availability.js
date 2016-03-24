@@ -56,13 +56,6 @@ var availability = function(){
             return [$inputFrom, $inputTo];
         },
 
-        toggleAvailabilityCheckbox = function($switcher){
-            var $checkbox = $switcher.siblings('input.switch-input');
-            ($checkbox.attr("checked") != undefined)
-                ? $checkbox.removeAttr("checked")
-                : $checkbox.attr("checked", "checked");
-        },
-
         toggleTimeInput = function ($switcher) {
             var inputs = getTimeInputsBySwitcher($switcher);
             $.each(inputs, function(index, $input){
@@ -181,9 +174,9 @@ var availability = function(){
                 closeTimepicker();
             });
 
-            $availabilitySwitchers.click( function(e){
+            $availabilitySwitchers.click( function(){
                 toggleTimeInput($(this));
-                toggleAvailabilityCheckbox($(this));
+                $(this).siblings('input.available-date').toggleAttribute("disabled");
             });
 
         };
