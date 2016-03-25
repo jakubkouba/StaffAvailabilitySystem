@@ -2,8 +2,8 @@
   .title= prefix.to_s.capitalize
   .time-picker
     =text_field_tag(:time,
-      '00:00',
-      disabled: !selected,
+      time,
+      disabled: disabled,
       name: "available-times[#{date}[#{prefix}]]",
       class: 'time-picker__selected-time')
 
