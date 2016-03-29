@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery
+//= require react
 //= require react_ujs
 //= require components
 //= require turbolinks
@@ -35,5 +36,5 @@ $(function(){
 
     // Availability
     availability().init();
-});//= require react
+});
 
