@@ -28,6 +28,8 @@ gem 'foundation-rails'
 gem 'bourbon'
 # Browserify
 gem 'browserify-rails'
+# React
+gem 'react-rails', '~> 1.6.0'
 
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
