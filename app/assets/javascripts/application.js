@@ -11,12 +11,15 @@
 // about supported directives.
 //
 //= require jquery
+//= require react_ujs
+//= require components
+//= require turbolinks
+
 // require jquery_ujs
 //= require 'custom_jQuery_plugins/toggle_attribute.js'
 //= require foundation
-//= require './components/main_menu.js'
+//= require './components/menu/main_menu.js'
 //= require 'employee/availability.js'
-// require turbolinks
 
 
 
@@ -32,4 +35,5 @@ $(function(){
 
     // Availability
     availability().init();
-});
+});//= require react
+
