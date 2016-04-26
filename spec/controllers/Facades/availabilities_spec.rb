@@ -6,6 +6,7 @@ RSpec.describe Facades::Availabilities, type: :facade do
     availabilities = []
     10.times { |i| availabilities << create(:availability) }
     @date = Date.new(2016,4,26)
+    @available_date = Date.new(2016,4,28)
     @facade = Facades::Availabilities.new(availabilities, @date)
 
     @correct_dates = [
@@ -36,5 +37,24 @@ RSpec.describe Facades::Availabilities, type: :facade do
 
   end
 
+  describe "#is_available" do
+
+    context "when available" do
+
+      let(:availabilities) { [ create(:availability, day: @available_date) ]}
+      let(:facade) { Facades::Availabilities.new(availabilities, @date)}
+
+      it "returns hash" do
+        expect(facade.is_available?(@available_date)).to be_kind_of Hash
+      end
+
+      it "sets disabled to false" do
+        expect(facade.is_available?(@available_date)[:disabled]).to be == false
+      end
+
+      it "sets day to #{@available_date}"
+
+    end
+  end
 
 end

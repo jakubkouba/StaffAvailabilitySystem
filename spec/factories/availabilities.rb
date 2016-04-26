@@ -17,9 +17,9 @@
 
 FactoryGirl.define do
   factory :availability do
-    sequence(:day) { |n| Date.today + n }
-    time_from "2016-03-17 17:52:08"
-    time_to "2016-03-17 17:52:08"
+    sequence(:day) { |n| Date.parse('2016-04-25') + n }
+    time_from "17:52:08"
+    time_to "17:52:08"
 
     trait :invalid do
       day "ivalid_day"
