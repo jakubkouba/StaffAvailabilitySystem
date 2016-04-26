@@ -8,6 +8,7 @@ class AvailabilitiesController < ApplicationController
   def show
     @current_date = Date.today
     @availabilities = @employee.availabilities.to_a
+    @facade = Facades::Availabilities.new
   end
 
   def update
