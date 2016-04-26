@@ -17,7 +17,7 @@
 
 FactoryGirl.define do
   factory :availability do
-    day "2016-03-17"
+    sequence(:day) { |n| Date.today + n }
     time_from "2016-03-17 17:52:08"
     time_to "2016-03-17 17:52:08"
 
