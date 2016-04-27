@@ -28,6 +28,21 @@ module Facades
       @week_dates[week][:start_at] + day_in_week
     end
 
+    def orbit_slider_config
+      {
+          orbit: '',
+          swipe: "true",
+          bullets: "false",
+          "timer-delay" => "false",
+          "auto-play" => "false",
+          "infinite-wrap" => "false",
+          "anim-in-from-right" => "slide-in-right",
+          "anim-out-to-right" => "slide-out-right",
+          "data-anim-in-from-left" =>	"slide-in-left",
+          "data-anim-out-to-left" => "slide-out-left"
+      }
+    end
+
     private
 
     def week_dates_for(date, week_count)

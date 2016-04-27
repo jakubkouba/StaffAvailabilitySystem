@@ -4,39 +4,48 @@
 
 =render 'availabilities/partials/time_menu'
 
-=react_component "AvailabilityCalendar"
+=react_component "AvailabilityCalendar", {foo: [1,3,4]}
 
-=form_tag({controller: :availabilities, action: :update}, method: :patch) do
-  .availability-calendar
-    .header
-      .header__day.day-col Day
-      .header__time.time-col Selected Time
-      .header__stat.stat-col
-        %i.fi-checkbox
 
-    .body
-      -7.times do |i|
-        -date = @current_date + i
-        -availability = availability_set?(date, @availabilities)
-        -#=debug availability
-        .day
-          .day_date.day-col
-            =date.strftime("%a")
-            %br
-            =date.to_formatted_s(:short)
-          .day__time.time-col 21:00 - 00:00
-          .day__stat.stat-col icon
-        .select-time
-          =render partial: 'availabilities/partials/select_time', locals: select_time_locals(:from, availability)
-          =render partial: 'availabilities/partials/select_time', locals: select_time_locals(:to, availability)
+.availability-calendar
+  .header
+    .header__day.day-col Day
+    .header__time.time-col Selected Time
+    .header__stat.stat-col
+      %i.fi-checkbox
 
-          .availability-switch
-            -switch_id = "avail-switch-#{availability[:date]}"
+  .body
+    .orbit{ data: @availabilities.orbit_slider_config , role: :region}
+      %ul.orbit-container
+        %button.orbit-previous
+          Prev
+          %span.show-for-sr Previous Slide︎
+        %button.orbit-next
+          Next
+          %span.show-for-sr Next Slide
+        =@availabilities.week_count.times do |week|
+          %li.orbit-slide{class: week == 0 ? 'is-active' : ''}
+            .week
+              -7.times do |day_in_week|
+                -date = @availabilities.get_date_for(week, day_in_week)
+                -@availabilities.is_available?(date)
+                -#=debug availability
+                .day
+                  .day_date.day-col
+                    =date.strftime("%a")
+                    %br
+                    =date.to_formatted_s(:short)
+                  .day__time.time-col 21:00 - 00:00
+                  .day__stat.stat-col icon
+                .select-time
+                  =render partial: 'availabilities/partials/select_time', locals: @availabilities.availability.time(:from)
+                  =render partial: 'availabilities/partials/select_time', locals: @availabilities.availability.time(:to)
 
-            =check_box_tag('available_dates[]', availability[:date], !availability[:disabled], id: switch_id, class: "switch-input")
+                  .availability-switch
+                    -switch_id = "avail-switch-#{@availabilities.availability.date}"
 
-            %label.switch-paddle.switcher{for: switch_id}
-              %span.switch-active{"aria-hidden" => "true"} Yes
-              %span.switch-inactive{"aria-hidden" => "true"} No
+                    =check_box_tag('available_dates[]', @availabilities.availability.date, !@availabilities.availability.disabled?, id: switch_id, class: "switch-input")
 
-  =submit_tag('Set Availability', class: :button)
+                    %label.switch-paddle.switcher{for: switch_id}
+                      %span.switch-active{"aria-hidden" => "true"} Yes
+                      %span.switch-inactive{"aria-hidden" => "true"} No
