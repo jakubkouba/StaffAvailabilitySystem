@@ -2,22 +2,22 @@ require 'rails_helper'
 
 RSpec.describe Facades::Availabilities, type: :facade do
 
-  before do
-    availabilities = []
-    10.times { |i| availabilities << create(:availability) }
-    @today = Date.new(2016,4,26)
-    @facade = Facades::Availabilities.new(availabilities, @today)
-
-    @correct_dates = [
-        %w[2016-04-25 2016-05-01],
-        %w[2016-05-02 2016-05-08],
-        %w[2016-05-09 2016-05-15]
-    ]
-
-    @week_count = 5
-  end
-
   describe "#week_dates" do
+
+    before(:all) do
+      availabilities = []
+      10.times { |i| availabilities << create(:availability) }
+      @today = Date.new(2016,4,26)
+      @facade = Facades::Availabilities.new(availabilities, @today)
+      @week_count = 5
+
+      @correct_dates = [
+          %w[2016-04-25 2016-05-01],
+          %w[2016-05-02 2016-05-08],
+          %w[2016-05-09 2016-05-15]
+      ]
+
+    end
 
     it "returns array of three elements as default" do
       expect(@facade.week_dates.size).to be == 3
