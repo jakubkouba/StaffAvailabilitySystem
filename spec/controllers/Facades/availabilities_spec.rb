@@ -5,9 +5,8 @@ RSpec.describe Facades::Availabilities, type: :facade do
   before do
     availabilities = []
     10.times { |i| availabilities << create(:availability) }
-    @date = Date.new(2016,4,26)
-    @available_date = Date.new(2016,4,28)
-    @facade = Facades::Availabilities.new(availabilities, @date)
+    @today = Date.new(2016,4,26)
+    @facade = Facades::Availabilities.new(availabilities, @today)
 
     @correct_dates = [
         %w[2016-04-25 2016-05-01],
@@ -41,20 +40,43 @@ RSpec.describe Facades::Availabilities, type: :facade do
 
     context "when available" do
 
-      let(:availabilities) { [ create(:availability, day: @available_date) ]}
-      let(:facade) { Facades::Availabilities.new(availabilities, @date)}
+      before(:all) do
+        @available_date_string = '2016-04-27'
+        @available_date = Date.parse(@available_date_string)
+        
+        day = { 
+            day:        @available_date,
+            time_from:  '2016-04-25 14:00:00',
+            time_to:    '2016-04-25 22:00:00'
+        }
+        
+        availabilities = [create(:availability, day)]
+        facade = Facades::Availabilities.new(availabilities, @today)
+        @is_available = facade.is_available?(@available_date)
+      end
 
       it "returns hash" do
-        expect(facade.is_available?(@available_date)).to be_kind_of Hash
+        expect(@is_available).to be_kind_of Hash
       end
 
       it "sets disabled to false" do
-        expect(facade.is_available?(@available_date)[:disabled]).to be == false
+        expect(@is_available[:disabled]).to be == false
       end
 
-      it "sets day to #{@available_date}"
+      it "sets day to #{@available_date}" do
+        expect(@is_available[:date]).to be == @available_date_string
+      end
+      
+      it "sets time_from to 14:00" do
+        expect(@is_available[:time_from]).to be == '14:00'
+      end
+
+      it "sets time_from to 22:00" do
+        expect(@is_available[:time_to]).to be == '22:00'
+      end
 
     end
+
   end
 
 end
