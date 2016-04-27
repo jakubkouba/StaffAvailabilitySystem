@@ -23,3 +23,5 @@ config/database.yml
 # frontend tools and modules
 app/assets/bower_components
 app/assets/node_modules
+
+.byebug_history
