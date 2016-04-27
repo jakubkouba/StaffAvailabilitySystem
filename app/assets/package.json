@@ -4,7 +4,8 @@
   "description": "Frontend build for SAS app",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "preinstall": "npm i -g bower"
   },
   "author": "Jakub Adler",
   "license": "ISC",
