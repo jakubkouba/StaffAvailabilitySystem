@@ -11,15 +11,6 @@ module Facades
       week_dates_for(date, week_count)
     end
 
-    def week_dates_for(date, week_count)
-      @week_dates = []
-      week_count.times do |week|
-        week_date = date + (week * 7)
-        @week_dates << { start_at: week_date.beginning_of_week }
-      end
-      @week_dates
-    end
-
     def weeks
       @week_dates.size
     end
@@ -32,6 +23,21 @@ module Facades
 
       @availability = AvailableRow.new(selected, date).view_attributes
 
+    end
+
+    def get_date_for(week, day_in_week)
+      @week_dates[week][:start_at] + day_in_week
+    end
+
+    private
+
+    def week_dates_for(date, week_count)
+      @week_dates = []
+      week_count.times do |week|
+        week_date = date + (week * 7)
+        @week_dates << { start_at: week_date.beginning_of_week }
+      end
+      @week_dates
     end
 
     class AvailableRow

@@ -2,17 +2,17 @@ require 'rails_helper'
 
 RSpec.describe Facades::Availabilities, type: :facade do
 
+  before(:all) do
+    availabilities = []
+    10.times { |i| availabilities << create(:availability) }
+    @today = Date.new(2016,4,26)
+    @week_count = 5
+    @facade = Facades::Availabilities.new(availabilities, @today, @week_count)
+  end
+
   describe "#week_dates" do
 
-    before(:all) do
-      availabilities = []
-      10.times { |i| availabilities << create(:availability) }
-      @today = Date.new(2016,4,26)
-      @week_count = 5
-      @facade = Facades::Availabilities.new(availabilities, @today, @week_count)
-      @correct_dates = %w[ 2016-04-25 2016-05-02 2016-05-09 ]
-
-    end
+    let(:correct_dates) { %w[ 2016-04-25 2016-05-02 2016-05-09 ] }
 
     it "returns array of #{@week_count} elements" do
       expect(@facade.week_dates.size).to be == @week_count
@@ -21,8 +21,16 @@ RSpec.describe Facades::Availabilities, type: :facade do
     it "returns correct dates" do
       week_dates = @facade.week_dates
       3.times do |week|
-        expect(week_dates[week][:start_at]).to be == Date.parse(@correct_dates[week])
+        expect(week_dates[week][:start_at]).to be == Date.parse(correct_dates[week])
       end
+    end
+
+  end
+
+  describe "#get_date_for(week, day_in_week)" do
+
+    it "returns date in week" do
+      expect(@facade.get_date_for(0,1)).to be == Date.parse('2016-04-26')
     end
 
   end
