@@ -10,7 +10,9 @@ RSpec.describe Facades::Availabilities, type: :facade do
     @facade = Facades::Availabilities.new(availabilities, @date, @week_count)
   end
 
-  describe "#week_dates_for" do
+  it "returns right amount of "
+
+  describe "#week_dates" do
 
     let(:correct_dates) { %w[ 2016-04-25 2016-05-02 2016-05-09 ] }
 

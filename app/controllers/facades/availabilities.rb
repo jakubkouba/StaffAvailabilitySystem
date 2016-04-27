@@ -3,16 +3,14 @@ module Facades
 
     attr_reader :current_date,
                 :availability,
-                :week_dates
+                :week_dates,
+                :week_count
 
     def initialize(availabilities, date = Date.today, week_count = 3)
       @current_date   = date
       @availabilities = availabilities
+      @week_count = week_count
       week_dates_for(date, week_count)
-    end
-
-    def weeks
-      @week_dates.size
     end
 
     def is_available?(date)
@@ -21,7 +19,8 @@ module Facades
         selected = availability if date == availability.day
       end
 
-      @availability = AvailableRow.new(selected, date).view_attributes
+      @availability = AvailableRow.new(selected, date)
+      @availability.view_attributes
 
     end
 
@@ -53,12 +52,20 @@ module Facades
         }
       end
 
+      def disabled?
+        @view_attributes[:disabled]
+      end
+
+      def date
+        @view_attributes[:date]
+      end
+
       def time(prefix)
         {
             prefix:   prefix,
-            disabled: @availability[:disabled],
-            date:     @availability[:date],
-            time:     @availability["time_#{prefix}".to_sym]
+            disabled: @view_attributes[:disabled],
+            date:     @view_attributes[:date],
+            time:     @view_attributes["time_#{prefix}".to_sym]
         }
       end
 
