@@ -15,6 +15,7 @@
 //= require react_ujs
 //= require components
 //= require turbolinks
+//= require motion-ui/motion-ui.js
 
 // require jquery_ujs
 //= require 'custom_jQuery_plugins/toggle_attribute.js'

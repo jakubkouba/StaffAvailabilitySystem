@@ -20,6 +20,7 @@
     "clockpicker": "^0.0.7",
     "foundation-icon-fonts": "*",
     "animate.css": "^3.5.1",
-    "sass-bootstrap-glyphicons": "^1.0.0"
+    "sass-bootstrap-glyphicons": "^1.0.0",
+    "motion-ui": "^1.2.2"
   }
 }

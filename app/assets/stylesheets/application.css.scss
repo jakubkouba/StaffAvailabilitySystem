@@ -16,6 +16,7 @@
 $GlyphiconsPath: 'sass-bootstrap-glyphicons/fonts'; // override font path for bootstrap icons
 @import "foundation/foundation_and_overrides";
 @import "bourbon";
+@import "motion-ui/motion-ui";
 
 //libs
 @import "animate.css/animate";
