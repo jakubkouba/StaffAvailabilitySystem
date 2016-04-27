@@ -2,24 +2,26 @@ module Facades
   class Availabilities
 
     attr_reader :current_date,
-                :availability
+                :availability,
+                :week_dates
 
-    def initialize(availabilities, date = Date.today)
+    def initialize(availabilities, date = Date.today, week_count = 3)
       @current_date   = date
       @availabilities = availabilities
+      week_dates_for(date, week_count)
     end
 
-    def week_dates(week_count = 3)
-      @dates = []
+    def week_dates_for(date, week_count)
+      @week_dates = []
       week_count.times do |week|
-        week_date = @current_date + (week * 7)
-        @dates << { start_at: week_date.beginning_of_week }
+        week_date = date + (week * 7)
+        @week_dates << { start_at: week_date.beginning_of_week }
       end
-      @dates
+      @week_dates
     end
 
     def weeks
-      @dates.size
+      @week_dates.size
     end
 
     def is_available?(date)
