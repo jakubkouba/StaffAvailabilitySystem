@@ -38,8 +38,8 @@ module Facades
           "infinite-wrap" => "false",
           "anim-in-from-right" => "slide-in-right",
           "anim-out-to-right" => "slide-out-right",
-          "data-anim-in-from-left" =>	"slide-in-left",
-          "data-anim-out-to-left" => "slide-out-left"
+          "anim-in-from-left" =>	"slide-in-left",
+          "anim-out-to-left" => "slide-out-left"
       }
     end
 
