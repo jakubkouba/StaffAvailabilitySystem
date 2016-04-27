@@ -5,12 +5,12 @@ RSpec.describe Facades::Availabilities, type: :facade do
   before(:all) do
     availabilities = []
     10.times { |i| availabilities << create(:availability) }
-    @today = Date.new(2016,4,26)
+    @date = Date.new(2016,4,26)
     @week_count = 5
-    @facade = Facades::Availabilities.new(availabilities, @today, @week_count)
+    @facade = Facades::Availabilities.new(availabilities, @date, @week_count)
   end
 
-  describe "#week_dates" do
+  describe "#week_dates_for" do
 
     let(:correct_dates) { %w[ 2016-04-25 2016-05-02 2016-05-09 ] }
 
@@ -38,7 +38,6 @@ RSpec.describe Facades::Availabilities, type: :facade do
   describe "#is_available" do
 
     before(:all) do
-      @date = Date.new(2016,4,26)
       @available_date_string = '2016-04-27'
       @available_date = Date.parse(@available_date_string)
 
