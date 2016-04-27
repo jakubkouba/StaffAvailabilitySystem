@@ -4,9 +4,6 @@
 
 =render 'availabilities/partials/time_menu'
 
-=react_component "AvailabilityCalendar", {foo: [1,3,4]}
-
-
 .availability-calendar
   .header
     .header__day.day-col Day
@@ -38,14 +35,9 @@
                   .day__time.time-col 21:00 - 00:00
                   .day__stat.stat-col icon
                 .select-time
-                  =render partial: 'availabilities/partials/select_time', locals: @availabilities.availability.time(:from)
-                  =render partial: 'availabilities/partials/select_time', locals: @availabilities.availability.time(:to)
+                  =react_component 'TimeInput', @availabilities.availability.time(:from)
+                  =react_component 'TimeInput', @availabilities.availability.time(:to)
 
                   .availability-switch
                     -switch_id = "avail-switch-#{@availabilities.availability.date}"
-
-                    =check_box_tag('available_dates[]', @availabilities.availability.date, !@availabilities.availability.disabled?, id: switch_id, class: "switch-input")
-
-                    %label.switch-paddle.switcher{for: switch_id}
-                      %span.switch-active{"aria-hidden" => "true"} Yes
-                      %span.switch-inactive{"aria-hidden" => "true"} No
+                    =react_component 'AvailabilitySwitch', { switch_id: switch_id, name: 'available_dates[]', value: @availabilities.availability.date, checked: !@availabilities.availability.disabled?, id: switch_id }
