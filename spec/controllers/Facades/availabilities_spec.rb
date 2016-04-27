@@ -11,11 +11,7 @@ RSpec.describe Facades::Availabilities, type: :facade do
       @facade = Facades::Availabilities.new(availabilities, @today)
       @week_count = 5
 
-      @correct_dates = [
-          %w[2016-04-25 2016-05-01],
-          %w[2016-05-02 2016-05-08],
-          %w[2016-05-09 2016-05-15]
-      ]
+      @correct_dates = %w[ 2016-04-25 2016-05-02 2016-05-09 ]
 
     end
 
@@ -30,7 +26,7 @@ RSpec.describe Facades::Availabilities, type: :facade do
     it "returns correct dates" do
       week_dates = @facade.week_dates
       3.times do |week|
-        2.times { |i| expect(week_dates[week][i]).to be == Date.parse(@correct_dates[week][i]) }
+        expect(week_dates[week][:start_at]).to be == Date.parse(@correct_dates[week])
       end
     end
 

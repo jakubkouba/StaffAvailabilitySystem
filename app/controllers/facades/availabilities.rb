@@ -10,12 +10,16 @@ module Facades
     end
 
     def week_dates(week_count = 3)
-      dates = []
+      @dates = []
       week_count.times do |week|
         week_date = @current_date + (week * 7)
-        dates << [ week_date.beginning_of_week, week_date.end_of_week ]
+        @dates << { start_at: week_date.beginning_of_week }
       end
-      dates
+      @dates
+    end
+
+    def weeks
+      @dates.size
     end
 
     def is_available?(date)
