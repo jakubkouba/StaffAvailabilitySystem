@@ -4,8 +4,8 @@
 #
 #  employee_id :integer
 #  day         :date             not null
-#  time_from   :time             not null
-#  time_to     :time             not null
+#  time_from   :datetime         not null
+#  time_to     :datetime         not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #
