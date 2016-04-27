@@ -2,7 +2,7 @@ var AvailabilitySwitch = React.createClass({
 
     render: function(){
         return(
-            <div class="availability-switch">
+            <div className="availability-switch">
                 <input
                     type="checkbox"
                     name={this.props.name}
@@ -11,7 +11,7 @@ var AvailabilitySwitch = React.createClass({
                     className="switch-input"
                     checked={this.props.checked}
                 />
-                <label className="switch-paddle switcher" for={this.props.id} >
+                <label className="switch-paddle switcher" htmlFor={this.props.id} >
                     <span aria-hidden="true" className="switch-active">Yes</span>
                     <span aria-hidden="true" className="switch-inactive">No</span>
                 </label>
