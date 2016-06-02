@@ -1,6 +1,16 @@
 == Employee Availability System
 
-This is doc contains basic information about system and how to get setup and runnig
+Application provides ability to employer to list his employees trough their work hous availability.
+Suitable for working environments where employees have flexible working hous and work on request.
+When ready sytem should provide ability to:
+
+* list employees
+* create tasks
+* assign employyes to taksks
+* time sheets
+* invoce
+* email & SMS notification when employee is assgned to job
+
 
 === Software
 
@@ -26,30 +36,3 @@ To run provision:
 --------
 
 [Database Creation] It is done trough provisionig. Development Production and test DB are created.
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
